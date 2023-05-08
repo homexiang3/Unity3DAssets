@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BlendPlane0
   - BlendPlane1
+  - Alien
+  - Planet
   layers:
   - Default
   - TransparentFX
