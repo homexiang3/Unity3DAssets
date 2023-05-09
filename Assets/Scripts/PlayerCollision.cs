@@ -22,7 +22,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if(collision.tag == "Alien" && !audioPlayer.isPlaying)
+        if((collision.tag == "Alien" || collision.tag == "Tree") && !audioPlayer.isPlaying)
         {
             Debug.Log("Collision");
             audioPlayer.Play();
