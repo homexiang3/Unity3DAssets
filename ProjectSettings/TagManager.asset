@@ -9,6 +9,11 @@ TagManager:
   - Alien
   - Planet
   - Tree
+  - ShipBody
+  - ShipMotor
+  - ShipArms
+  - ShipTemplate
+  - ShipEye
   layers:
   - Default
   - TransparentFX
