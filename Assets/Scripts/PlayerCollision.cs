@@ -56,7 +56,7 @@ public class PlayerCollision : MonoBehaviour
                     GameObject child = collision.gameObject.transform.GetChild(i).gameObject;
                     if (ObjectHolded.CompareTag(child.tag)) // Find a match 
                     {
-
+                        GameStateManager.Instance.AddSpacePart();
                         switch (child.tag)
                         {
                             case "ShipBody": //change body material
