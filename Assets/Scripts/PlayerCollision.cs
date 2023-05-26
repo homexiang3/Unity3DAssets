@@ -29,7 +29,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-
+        //Alien
         if (collision.tag == "Alien"  && !audioPlayer.isPlaying)
         {
             Debug.Log("Alien is Happy");
@@ -39,7 +39,7 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log("Planet Collision");
         }
-
+        //L1: SHIP PIECES
         if (collision.tag == "ShipBody" || collision.tag == "ShipArms" || collision.tag == "ShipMotor" || collision.tag == "ShipEye") // Level1: Cuando player colisiona con piezas del ship
         {
             Debug.Log(collision.tag);
@@ -101,7 +101,7 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-
+    //De momento no se usa
     public void OnTriggerExit(Collider collision) 
     {
         if(collision.tag == "ShipBody") //Quitamos efecto de "coger objeto"
