@@ -5,11 +5,7 @@ using UnityEngine;
 public class AlienWalk : MonoBehaviour
 {
     public int speed;
-    private bool isMovingLeft = false;
-    private bool rotating = false;
-
-    private float rotationTime = 2f;
-    private float rotationSpeed = 3f;
+    public Transform target;
 
     private Quaternion newRotation;
     // Start is called before the first frame update
@@ -21,43 +17,30 @@ public class AlienWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!rotating)
+        var step = speed * Time.deltaTime; // calculate distance to move
+        // Determine which direction to rotate towards
+        Vector3 targetDirection = target.position - transform.position;
+
+        // The step size is equal to speed times frame time.
+
+        // Rotate the forward vector towards the target direction by one step
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+
+        // Draw a ray pointing at our target in
+        Debug.DrawRay(transform.position, newDirection, Color.red);
+
+        // Calculate a rotation a step closer to the target and applies rotation to this object
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+
+        // Check if the position of the cube and sphere are approximately equal.
+        if (Vector3.Distance(transform.position, target.position) < 0.001f)
         {
-            rotating = true;
-            StartCoroutine(RotateAlien());
-            rotating = false;
-        }
-
-        if (isMovingLeft)
-        {
-            transform.position = new Vector3(transform.position.x,
-                transform.position.y, transform.position.z - speed * Time.deltaTime);
-
-            if (transform.position.z <= 5)
-            {
-                isMovingLeft = false;
-                newRotation = Quaternion.Euler(320f, 0f, 0f);
-            }
-
-        }
-        else
-        {
-            transform.position = new Vector3(transform.position.x,
-                transform.position.y, transform.position.z + speed * Time.deltaTime);
-
-            if (transform.position.z >= 95)
-            {
-                isMovingLeft = true;
-                newRotation = Quaternion.Euler(320f, 180f, 0f);
-            }
-            
+            GameStateManager.Instance.AlienInShip(); //send to manager that aliens is in ship
+            Destroy(this.gameObject);
         }
     }
 
-    private IEnumerator RotateAlien()
-    {
-        float t = Mathf.Clamp(Time.deltaTime * rotationSpeed, 0f, 0.99f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, t);
-        yield return new WaitForSeconds(rotationTime);
-    }
+
 }
