@@ -28,17 +28,11 @@ public class PlatformBehavior : MonoBehaviour
         {
             if(System.String.IsNullOrEmpty(playerAbove)) //If no other user was there before
             {
-                playerAbove = collision.gameObject.name; //Save the user tag
+                //Save the user tag
+                playerAbove = collision.gameObject.name;
 
                 //GameStateManager handling
-                if (gameObject.name == "platformLeft")
-                {
-                    GameStateManager.Instance.playerInPlatformLeft();
-                }
-                else
-                {
-                    GameStateManager.Instance.playerInPlatformRight();
-                }
+                GameStateManager.Instance.playerInPlatform(gameObject);
             }
         }
     }
@@ -52,14 +46,7 @@ public class PlatformBehavior : MonoBehaviour
             playerAbove = null;
 
             //GameStateManager handling
-            if (gameObject.name == "platformLeft")
-            {
-                GameStateManager.Instance.noPlayerInPlatformLeft();
-            }
-            else
-            {
-                GameStateManager.Instance.noPlayerInPlatformRight();
-            }
+            GameStateManager.Instance.noPlayerInPlatform(gameObject);
         }
     }
 

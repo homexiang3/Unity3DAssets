@@ -13,15 +13,16 @@ public class GameStateManager : MonoBehaviour
     //private int _shipBody = 0; //level 1
 
     //Level 2 
+    public GameObject PlatformLeft;
+    public GameObject PlatformRight;
     private bool _platformLeft = false; // If left platform has a player
     private bool _platformRight = false; // If right platform has a player
     public double _platformMatched = 0; // Players score of Level2
-    public float _platformMaxTime = 60f; // Max time of platforms waiting before moving
+    public float _platformMaxTime = 15f; // Max time of platforms waiting before moving
     public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
     public double _platformPenalization = 0.3; // Points penalization in case of no matching
     private float _lastTime = 0f; // How much time has passed since
     private bool _level2Start = false; 
-    public GameObject[] platforms; // GameObject.FindGameObjectsWithTag("Platform");
 
 
 
@@ -65,11 +66,6 @@ public class GameStateManager : MonoBehaviour
         if (_level2Start == false && SceneManager.GetActiveScene().name == "Level2")
         {
             Debug.Log("Level 2 STARTS: Search for the platforms!!");
-
-            // Get platforms
-            platforms = new GameObject[2];
-            platforms[0] = GameObject.Find("platformRight");
-            platforms[1] = GameObject.Find("platformLeft");
 
             // Prevents to repeat this part again (we only need to do it once)
             _level2Start = true;
@@ -119,25 +115,33 @@ public class GameStateManager : MonoBehaviour
     {
         _level2Start = true;
     }
-    public void playerInPlatformLeft() // player collides with platform1 tag
+    public void playerInPlatform(GameObject platformObject) // player collides with platform1 tag
     {
-        _platformLeft = true;
-        Debug.Log("Player in LP");
+        if (platformObject == PlatformLeft)
+        {
+            _platformLeft = true;
+            Debug.Log("Player in LP");
+        }
+        else
+        {
+            _platformRight = true;
+            Debug.Log("Player in RP");
+        }
+        
     }
-    public void playerInPlatformRight() // player collides with platform2 tag
+    public void noPlayerInPlatform(GameObject platformObject) // player collides with platforms
     {
-        _platformRight = true;
-        Debug.Log("Player in RP");
-    }
-    public void noPlayerInPlatformLeft() // player collides with platform1 tag
-    {
-        _platformLeft = false;
-        Debug.Log("Player left LP");
-    }
-    public void noPlayerInPlatformRight() // player collides with platform2 tag
-    {
-        _platformRight = false;
-        Debug.Log("Player left RP");
+        if(platformObject == PlatformLeft)
+        {
+            _platformLeft = false;
+            Debug.Log("Player left LP");
+        }
+        else
+        {
+            _platformRight = false;
+            Debug.Log("Player left RP");
+        }
+        
     }
     public void AddPlatformScore() // Add points and check if change of scene is needed
     {
@@ -162,11 +166,8 @@ public class GameStateManager : MonoBehaviour
 
     public void MovePlatforms()// move all platforms
     {
-        foreach (GameObject platform in platforms)
-        {
-            platform.GetComponent<PlatformBehavior>().movePosition();
-        }
-        
+        PlatformLeft.GetComponent<PlatformBehavior>().movePosition();
+        PlatformRight.GetComponent<PlatformBehavior>().movePosition();
     }
 
 }
