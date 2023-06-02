@@ -537,3 +537,48 @@ Mono: successfully reloaded assembly
 - Completed reload, in  4.429 seconds
 Platform modules already initialized, skipping
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+<<<<<<< Updated upstream
+=======
+Refreshing native plugins compatible for Editor in 1.00 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3486 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 203.0 MB.
+System memory in use after: 203.2 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 4476.
+Total: 6.633800 ms (FindLiveObjects: 0.501700 ms CreateObjectMapping: 0.262000 ms MarkObjects: 5.761800 ms  DeleteObjects: 0.105700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 338.201617 seconds.
+  path: Assets/Materials/Splash.mat
+  artifactKey: Guid(cd171e8bd7373a742a1a7e7df878537c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Splash.mat using Guid(cd171e8bd7373a742a1a7e7df878537c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76b60bee6deb85bd25ea6cccbc01d547') in 1.654300 seconds
+  Import took 1.670521 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.019718 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.873 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.10 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3477 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 202.7 MB.
+System memory in use after: 203.0 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 4617.
+Total: 5.258100 ms (FindLiveObjects: 0.527400 ms CreateObjectMapping: 0.188600 ms MarkObjects: 4.405400 ms  DeleteObjects: 0.134900 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+>>>>>>> Stashed changes
