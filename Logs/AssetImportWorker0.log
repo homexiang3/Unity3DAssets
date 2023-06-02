@@ -15,19 +15,11 @@ C:/Users/raque/Documents/GitHub/Unity3DAssets
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-<<<<<<< Updated upstream
 58181
 Successfully changed project path to: C:/Users/raque/Documents/GitHub/Unity3DAssets
 C:/Users/raque/Documents/GitHub/Unity3DAssets
 Using Asset Import Pipeline V2.
 Refreshing native plugins compatible for Editor in 219.42 ms, found 2 plugins.
-=======
-50097
-Successfully changed project path to: C:/Users/Jdyx/Documents/UnityProjects/Unity3DAssets
-C:/Users/Jdyx/Documents/UnityProjects/Unity3DAssets
-Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 492.66 ms, found 2 plugins.
->>>>>>> Stashed changes
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.4f1 (becced5a802b)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
@@ -44,7 +36,6 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
-<<<<<<< Updated upstream
 Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -52,21 +43,11 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/E
 Registered in 0.004033 seconds.
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 247.32 ms, found 2 plugins.
-=======
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56148
-Begin MonoManager ReloadAssembly
-Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007563 seconds.
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 190.58 ms, found 2 plugins.
->>>>>>> Stashed changes
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-<<<<<<< Updated upstream
 - Completed reload, in  2.479 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
@@ -74,30 +55,16 @@ Registered in 0.003764 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 234.45 ms, found 2 plugins.
-=======
-- Completed reload, in  4.206 seconds
-Platform modules already initialized, skipping
-Registering precompiled user dll's ...
-Registered in 0.024019 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 155.89 ms, found 2 plugins.
->>>>>>> Stashed changes
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-<<<<<<< Updated upstream
 - Completed reload, in  3.990 seconds
-=======
-- Completed reload, in  3.189 seconds
->>>>>>> Stashed changes
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-<<<<<<< Updated upstream
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
 Refreshing native plugins compatible for Editor in 0.77 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -170,237 +137,19 @@ Received Import Request.
   artifactKey: Guid(55ae17fafcff8c149901518a9c36c456) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scripts/AlienWalk.cs using Guid(55ae17fafcff8c149901518a9c36c456) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53890dee848ef6662fec21eb33e34f3a') in 0.009946 seconds
   Import took 0.018815 seconds .
-=======
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.14 seconds
-Refreshing native plugins compatible for Editor in 0.55 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3811 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 194.2 MB.
-System memory in use after: 194.4 MB.
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 4261.
-Total: 5.026800 ms (FindLiveObjects: 0.637900 ms CreateObjectMapping: 0.257900 ms MarkObjects: 3.870100 ms  DeleteObjects: 0.246800 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '271d8e224820eaae3ee0bbfcce131000') in 2.208300 seconds
-  Import took 2.231249 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.336488 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '271d8e224820eaae3ee0bbfcce131000') in 0.135525 seconds
-  Import took 0.152510 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.400305 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b534eb656902e5a8580eb601ca2569fa') in 0.132631 seconds
-  Import took 0.144481 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 24.525865 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67b797a930b5f7731228b1d331f3908a') in 0.109313 seconds
-  Import took 0.121422 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.766008 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d8a439dff555252d792b1c0505f90f5') in 0.133206 seconds
-  Import took 0.150227 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.398923 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e2c7a6931ff4557616622bf5bf1b3ee') in 0.134370 seconds
-  Import took 0.152616 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.763585 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f41de6e89fdc70d8a411c2f5886b66a5') in 0.132128 seconds
-  Import took 0.149149 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 21.747108 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c743588e2e6a976faba6039367f574c') in 0.175128 seconds
-  Import took 0.190906 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 21.635615 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.prefab
-  artifactKey: Guid(3594fee90b095764d85824bdfd09177b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.prefab using Guid(3594fee90b095764d85824bdfd09177b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbde287559feb6ec2c43ed07ce659b97') in 0.086589 seconds
-  Import took 0.100861 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 21.480882 seconds.
-  path: Assets/Models/Platform/textures/portal_button_blue emission 1.png
-  artifactKey: Guid(98fc320e71be11e4481f09790af94164) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/textures/portal_button_blue emission 1.png using Guid(98fc320e71be11e4481f09790af94164) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15e3642c95d0ce4c14feb9f2bd20f1e0') in 0.060795 seconds
-  Import took 0.074912 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000603 seconds.
-  path: Assets/Models/Platform/textures/portal_button_blue.jpg
-  artifactKey: Guid(c94d85f3e9441bb4b9b506ca5bab42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/textures/portal_button_blue.jpg using Guid(c94d85f3e9441bb4b9b506ca5bab42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '289bb9f252fb53605add2390d4302c72') in 0.017655 seconds
-  Import took 0.030356 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 27.171908 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b200a51480e790c06126f650d3f29be5') in 0.139761 seconds
-  Import took 0.156419 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 55.180552 seconds.
-  path: Assets/Models/Platform/source/portal_button_reduced.prefab
-  artifactKey: Guid(1890bba50de0708408d87aeb2aa65105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal_button_reduced.prefab using Guid(1890bba50de0708408d87aeb2aa65105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23c5a0b7b94ba2c9307279959f6465d4') in 0.108675 seconds
-  Import took 0.122977 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 24.620513 seconds.
-  path: Assets/Models/Platform/source/portal 2 button.fbx
-  artifactKey: Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button.fbx using Guid(74d45e7621b457545a2d230a44031e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7973e4a9246bfa3484186265089bba51') in 0.175720 seconds
-  Import took 0.190365 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 44.585657 seconds.
-  path: Assets/Models/Platform/source/portal 2 button (1).prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/portal 2 button (1).prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97880cec5482e2867cd1b56ebbd8c036') in 0.080271 seconds
-  Import took 0.097665 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 22.522186 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e207e267487043156d4dff9fd995c06c') in 0.077283 seconds
-  Import took 0.092790 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 13.480658 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7afc5547899c556f1fb841aede63a745') in 0.098285 seconds
-  Import took 0.117785 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.672229 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1d5c56c69271f05b41ea3bdc4cebf75') in 0.098739 seconds
-  Import took 0.118384 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.472079 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa316df250cbfdb862d9eed4270e03b6') in 0.108821 seconds
-  Import took 0.126576 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 114.453396 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5f0c7246ac2672a8e8973660f612b99') in 0.094404 seconds
-  Import took 0.110989 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.681901 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '297b6effd08e0695d0e590bd81e5aeba') in 0.087562 seconds
-  Import took 0.104511 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.869288 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9cf5859c4916b98f96eefe2282b4bcb') in 0.063328 seconds
-  Import took 0.073492 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.487035 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '771d22dddb973378d8837a9302739aa7') in 0.084643 seconds
-  Import took 0.098781 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.523782 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec40561d52e7ef4e3b348393cbd884ae') in 0.084678 seconds
-  Import took 0.103696 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.324796 seconds.
-  path: Assets/Models/Platform/source/Platform.prefab
-  artifactKey: Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Platform/source/Platform.prefab using Guid(6a874d96dfc4ab741b1a0ff3986c2ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a61dd620be1e4ad05237e99ecf66756a') in 0.064807 seconds
-  Import took 0.083303 seconds .
->>>>>>> Stashed changes
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-<<<<<<< Updated upstream
 Registered in 0.004894 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.93 ms, found 2 plugins.
-=======
-Registered in 0.017527 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.71 ms, found 2 plugins.
->>>>>>> Stashed changes
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-<<<<<<< Updated upstream
 - Completed reload, in  3.108 seconds
 Platform modules already initialized, skipping
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
@@ -1884,25 +1633,4 @@ System memory in use after: 188.3 MB.
 
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 4587.
 Total: 6.460200 ms (FindLiveObjects: 0.908500 ms CreateObjectMapping: 0.486200 ms MarkObjects: 5.024800 ms  DeleteObjects: 0.038000 ms)
-=======
-- Completed reload, in  5.213 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 1.28 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3489 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 203.3 MB.
-System memory in use after: 203.5 MB.
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 4473.
-Total: 10.242200 ms (FindLiveObjects: 0.560000 ms CreateObjectMapping: 0.151500 ms MarkObjects: 9.498500 ms  DeleteObjects: 0.029600 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 2013.064501 seconds.
-  path: Assets/ImportedPackages/Andtech/Star Pack/Runtime/Materials/Sparkle.mat
-  artifactKey: Guid(80a46f8de30908a4bbfbdf1b34afd0e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ImportedPackages/Andtech/Star Pack/Runtime/Materials/Sparkle.mat using Guid(80a46f8de30908a4bbfbdf1b34afd0e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21f9bd5bb3f68d7baab0a4b8f8851e07') in 4.760914 seconds
-  Import took 5.017334 seconds .
->>>>>>> Stashed changes
 
