@@ -6,13 +6,13 @@ using UnityEngine.Rendering.HighDefinition;
 public class PlatformBehavior : MonoBehaviour
 {
     //public float[] xRange = { 5f, 95f };
-    public float[] xRange = { -55f, 36f };
+    public float[] xRange = { 9f, 93f };
     //public float[] zRange = { 5f, 95f };
-    public float[] zRange = { -55f, 36f };
+    public float[] zRange = { 9f, 93f };
     public float lastTime = 0f;
     public string playerAbove;
     public GameObject[] platforms; //GameObject.FindGameObjectsWithTag("Platform");
-    public int maxTime = 60000;
+    public int maxTime = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class PlatformBehavior : MonoBehaviour
         //int i = 0;
 
         //See if all platforms have players above
+        /*
         foreach (GameObject platform in platforms)
         {
             //Debug.Log("inside foreach");
@@ -50,8 +51,10 @@ public class PlatformBehavior : MonoBehaviour
                 break;
             } 
         }
+        */
 
         //If the time is over or there are players above all platforms
+        /*
         if (Time.time - lastTime > maxTime || allPlayersAbove == true)
         {
             Debug.Log("MOVE PLATFORMS " + allPlayersAbove);
@@ -69,14 +72,18 @@ public class PlatformBehavior : MonoBehaviour
             if (allPlayersAbove == true) //Win points
             {
                 //TO DO: Set win music
-                Debug.Log("Players Win");
+                Debug.Log("Players Win points");
+                GameStateManager.Instance.AddPlatformScore();
+
             }
             else //Lose points
             {
                 //TO DO: Set music
-                Debug.Log("Players Loose");
+                Debug.Log("Players Lose points");
+                GameStateManager.Instance.RemovePlatformScore();
             }
         }
+        */
     }
 
     public void OnTriggerStay(Collider collision)
@@ -87,6 +94,16 @@ public class PlatformBehavior : MonoBehaviour
             if(System.String.IsNullOrEmpty(playerAbove)) //If no other user was there before
             {
                 playerAbove = collision.gameObject.name; //Save the user tag
+
+                //GameStateManager handling
+                if (gameObject.name == "platformLeft")
+                {
+                    GameStateManager.Instance.playerInPlatformLeft();
+                }
+                else
+                {
+                    GameStateManager.Instance.playerInPlatformRight();
+                }
             }
         }
     }
@@ -96,11 +113,22 @@ public class PlatformBehavior : MonoBehaviour
         //If the user exits
         if (collision.gameObject.name == "Player1" || collision.gameObject.name == "Player2")
         {
+            // if(collision.gameObject.name == playerAbove) //Gestionar que solo si primer player se va => Not NEED PQ tenemos triggerStay
             playerAbove = null;
+
+            //GameStateManager handling
+            if (gameObject.name == "platformLeft")
+            {
+                GameStateManager.Instance.noPlayerInPlatformLeft();
+            }
+            else
+            {
+                GameStateManager.Instance.noPlayerInPlatformRight();
+            }
         }
     }
 
-    void movePosition()
+    public void movePosition()
     {
         //Get the range of possible x and z values
         float x_down = xRange[0];
@@ -109,20 +137,20 @@ public class PlatformBehavior : MonoBehaviour
         float z_up;
 
         //See which platform it is to get the correct z range
-        if ( gameObject.tag == "platformLeft")
+        if ( gameObject.name == "platformLeft")
         {
-            z_down = xRange[0]; //5
-            z_up = (xRange[1] - xRange[0]) / 2; //40
+            z_down = zRange[0]; //5
+            z_up = (zRange[1] - zRange[0]) / 2; //40
         } 
         else
         {
-            z_down = xRange[0] + (xRange[1] - xRange[0]) / 2; //45
-            z_up = xRange[1]; //95
+            z_down = zRange[0] + (zRange[1] - zRange[0]) / 2; //45
+            z_up = zRange[1]; //95
         }
 
 
         //Generate a random position from the corresponding range
-        var randPos = new Vector3(Random.Range(x_down, x_up), 0, Random.Range(z_down, z_up));
+        var randPos = new Vector3(Random.Range(x_down, x_up), -20, Random.Range(z_down, z_up));
         //var randPos = new Vector3(Random.Range(10.5f, 95.5f), 0, Random.Range(5f, 95f));
 
         //Change the position of this platform

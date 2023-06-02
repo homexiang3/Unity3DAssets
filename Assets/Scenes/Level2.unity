@@ -524,6 +524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab64d887bd048d24c93ed0bbb7db30c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _platformMatched: 0
+  _platformMaxTime: 60
+  _platformMinScore: 4
+  _platformPenalization: 0.3
+  platforms: []
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3907,8 +3912,8 @@ GameObject:
   m_Component:
   - component: {fileID: 881283346}
   - component: {fileID: 881283349}
-  - component: {fileID: 881283348}
   - component: {fileID: 881283347}
+  - component: {fileID: 881283348}
   m_Layer: 0
   m_Name: platformLeft
   m_TagString: Untagged
@@ -3924,7 +3929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881283345}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 80, y: 0, z: 80}
+  m_LocalPosition: {x: 15.3, y: 0, z: 24.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1077035004}
@@ -3941,7 +3946,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 8, z: 5}
+  m_Size: {x: 8, y: 8, z: 50}
   m_Center: {x: 0, y: 0, z: -1}
 --- !u!114 &881283348
 MonoBehaviour:
@@ -3956,15 +3961,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRange:
-  - -55
-  - 36
+  - 9
+  - 93
   zRange:
-  - -55
-  - 36
+  - 9
+  - 93
   lastTime: 0
   playerAbove: 
   platforms: []
-  maxTime: 60000
+  maxTime: 7
 --- !u!212 &881283349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5460,8 +5465,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1199814973}
   - component: {fileID: 1199814976}
-  - component: {fileID: 1199814975}
   - component: {fileID: 1199814974}
+  - component: {fileID: 1199814975}
   m_Layer: 0
   m_Name: platformRight
   m_TagString: Untagged
@@ -5477,7 +5482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199814972}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 20, y: 0, z: 20}
+  m_LocalPosition: {x: 37.3, y: -0, z: 68.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1077035004}
@@ -5494,7 +5499,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 8, z: 5}
+  m_Size: {x: 8, y: 8, z: 50}
   m_Center: {x: 0, y: 0, z: -1}
 --- !u!114 &1199814975
 MonoBehaviour:
@@ -5509,15 +5514,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRange:
-  - -55
-  - 36
+  - 9
+  - 93
   zRange:
-  - -55
-  - 36
+  - 9
+  - 93
   lastTime: 0
   playerAbove: 
   platforms: []
-  maxTime: 60000
+  maxTime: 7
 --- !u!212 &1199814976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19283,6 +19288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1678764752}
+  - {fileID: 264155794}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
