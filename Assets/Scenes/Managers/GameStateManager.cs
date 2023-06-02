@@ -149,7 +149,7 @@ public class GameStateManager : MonoBehaviour
         if (_platformMatched >= _platformMinScore) // If players have achieved enough points
         {
             Debug.Log("Level 2 COMPLETED");
-            //SceneManager.LoadScene("Level3"); // Load scene 3
+            SceneManager.LoadScene("Level3"); // Load scene 3
         }
             
 
