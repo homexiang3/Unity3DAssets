@@ -524,11 +524,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab64d887bd048d24c93ed0bbb7db30c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlatformLeft: {fileID: 881283345}
+  PlatformRight: {fileID: 1199814972}
   _platformMatched: 0
   _platformMaxTime: 60
   _platformMinScore: 4
   _platformPenalization: 0.3
-  platforms: []
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3966,10 +3967,7 @@ MonoBehaviour:
   zRange:
   - 9
   - 93
-  lastTime: 0
   playerAbove: 
-  platforms: []
-  maxTime: 7
 --- !u!212 &881283349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5519,10 +5517,7 @@ MonoBehaviour:
   zRange:
   - 9
   - 93
-  lastTime: 0
   playerAbove: 
-  platforms: []
-  maxTime: 7
 --- !u!212 &1199814976
 SpriteRenderer:
   m_ObjectHideFlags: 0
