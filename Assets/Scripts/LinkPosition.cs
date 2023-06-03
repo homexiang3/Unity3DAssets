@@ -13,15 +13,17 @@ public class LinkPosition : MonoBehaviour
     private Color far = Color.red;
     private float distance;
     private GameObject link;
+    public bool isNear = false;
 
     void Start()
     {
         l = gameObject.AddComponent<LineRenderer>();
         l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         distance = 0.0f;
-        link = new GameObject("link", typeof(CapsuleCollider));
+        link = GameObject.Find("PlayerLink");
         CapsuleCollider capsuleCollider = link.GetComponent<CapsuleCollider>();
-        capsuleCollider.direction = 0;
+        capsuleCollider.direction = 2;
+        capsuleCollider.radius = 1;
         capsuleCollider.center = new Vector3(0, 0, 0);
     }
 
@@ -33,13 +35,16 @@ public class LinkPosition : MonoBehaviour
         distance = Vector3.Distance(go1.transform.position, go2.transform.position);
         if(distance < 20.0f)
         {
-            l.SetColors(near,near);
+            l.startColor = near;
+            l.endColor = near;
+            isNear = true;
 
         }
         else
         {
-            l.SetColors(far,far);
-
+            l.startColor = far;
+            l.endColor = far;
+            isNear = false;
         }
 
         List<Vector3> pos = new List<Vector3>();
@@ -63,13 +68,14 @@ public class LinkPosition : MonoBehaviour
         Vector3 dir2 = dir * 0.5f;
         Vector3 centerCoord = startPos + dir2;
 
+        /* NOT USED
         float angleWithZ = Vector3.Angle(dir, new Vector3(0, 0, 1));
         float angleWithY = Vector3.Angle(dir, new Vector3(0, 1, 0));
-        float angleWithX = Vector3.Angle(dir, new Vector3(1, 0, 0));
+        float angleWithX = Vector3.Angle(dir, new Vector3(1, 0, 0));*/
 
         link.transform.position = centerCoord;
         CapsuleCollider capsuleCollider = link.GetComponent<CapsuleCollider>();
         capsuleCollider.height = height;
-        capsuleCollider.transform.rotation = Quaternion.Euler(angleWithX, angleWithY, angleWithZ);
+        link.transform.LookAt(go2.transform);
     }
 }
