@@ -59,7 +59,8 @@ public class PlatformBehavior : MonoBehaviour
         float z_up;
 
         //See which platform it is to get the correct z range
-        if ( gameObject.name == "platformLeft")
+        //if ( gameObject.name == "platformLeft")
+        if (gameObject == GameStateManager.Instance.PlatformLeft)
         {
             z_down = zRange[0];
             z_up = (zRange[1] - zRange[0]) / 2;
