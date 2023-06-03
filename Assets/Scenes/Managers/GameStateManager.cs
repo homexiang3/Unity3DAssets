@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,10 @@ public class GameStateManager : MonoBehaviour
     public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
     public double _platformPenalization = 0.3; // Points penalization in case of no matching
     private float _lastTime = 0f; // How much time has passed since
-    private bool _level2Start = false; 
+    private bool _level2Start = false;
+    public GameObject RingParent;
+    public GameObject RingPrefab;
+    private GameObject[] RingList;
 
 
 
@@ -75,6 +79,32 @@ public class GameStateManager : MonoBehaviour
 
             //Set _lastTime to current time
             _lastTime = Time.time;
+
+            // Create rings
+            RingList = new GameObject[(int)_platformMinScore];
+
+            for (int i = 0; i < _platformMinScore; i++)
+            {
+                // Create a new Ring, with name ring<i+1>
+                var newRing = Instantiate(RingPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                newRing.name = "ring" + (i + 1);
+
+                // Set correct position, rotation and parent
+                newRing.transform.position = RingParent.transform.position;
+                newRing.transform.rotation = RingParent.transform.rotation;
+                newRing.transform.parent = RingParent.transform;
+
+                // Change ring radius
+                ParticleSystem particleSystem = newRing.GetComponent<ParticleSystem>();
+                ParticleSystem.ShapeModule ringShape = particleSystem.shape;
+                ringShape.radius = 8 + 2.5f*i;
+
+                // Set to HIDE
+                newRing.SetActive(false);
+
+                // Add to RingList
+                RingList[i] = newRing;
+            }
         }
 
 
@@ -145,11 +175,18 @@ public class GameStateManager : MonoBehaviour
     }
     public void AddPlatformScore() // Add points and check if change of scene is needed
     {
+        // Set platforms to false (no player above)
         _platformLeft = false;
         _platformRight = false;
+
+        // SHOW ring BEFORE adding points (because of the index which starts at 0)
+        RingList[(int)_platformMatched].SetActive(true);
+
+        // Add one point to the score
         _platformMatched += 1;
         Debug.Log("SCORE " + _platformMatched);
 
+        // Change to LEVEL 3 if completed
         if (_platformMatched >= _platformMinScore) // If players have achieved enough points
         {
             Debug.Log("Level 2 COMPLETED");
@@ -160,7 +197,11 @@ public class GameStateManager : MonoBehaviour
     }
     public void RemovePlatformScore()// Remove points
     {
-        _platformMatched -= 0.5;
+
+        // Decrease score
+        _platformMatched -= 0.3;
+
+        // Avoid having negative score
         if (_platformMatched < 0) _platformMatched = 0;
     }
 
