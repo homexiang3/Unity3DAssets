@@ -39,3 +39,6 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+ProjectSettings/HDRPProjectSettings.asset
+Logs/AssetImportWorker0.log
+Logs/AssetImportWorker0-prev.log

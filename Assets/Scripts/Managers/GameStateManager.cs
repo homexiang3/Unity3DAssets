@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +22,7 @@ public class GameStateManager : MonoBehaviour
     public double _platformMatched = 0; // Players score of Level2
     public float _platformMaxTime = 15f; // Max time of platforms waiting before moving
     public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
-    public double _platformPenalization = 0.3; // Points penalization in case of no matching
+    public double _platformPenalization = 0.5; // Points penalization in case of no matching
     private float _lastTime = 0f; // How much time has passed since
     private bool _level2Start = false;
     public GameObject RingParent;
@@ -197,12 +198,22 @@ public class GameStateManager : MonoBehaviour
     }
     public void RemovePlatformScore()// Remove points
     {
+        //Save previos score
+        double previousScore = _platformMatched;
 
         // Decrease score
-        _platformMatched -= 0.3;
+        _platformMatched -= _platformPenalization;
 
         // Avoid having negative score
         if (_platformMatched < 0) _platformMatched = 0;
+
+        //Check if the newScore implies the lose of a ring
+        if ((int)_platformMatched < (int)previousScore)
+        {
+            RingList[(int)_platformMatched].SetActive(false); //HIDE ring
+        }
+
+        
     }
 
     public void MovePlatforms()// move all platforms
