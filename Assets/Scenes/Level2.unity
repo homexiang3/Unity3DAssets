@@ -531,7 +531,7 @@ MonoBehaviour:
   _platformMinScore: 4
   _platformPenalization: 0.3
   RingParent: {fileID: 871911794}
-  RingPrefab: {fileID: 8848491598431861380, guid: 1be59ad78dbfb594da5f0cba121d405e, type: 3}
+  RingPrefab: {fileID: 3378834050747702334, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5509,7 +5509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1214072682
 Transform:
   m_ObjectHideFlags: 0
@@ -12727,7 +12727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1663283246
 Transform:
   m_ObjectHideFlags: 0

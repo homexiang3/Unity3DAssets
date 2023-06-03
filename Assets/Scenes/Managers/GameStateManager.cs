@@ -157,7 +157,11 @@ public class GameStateManager : MonoBehaviour
             _platformRight = true;
             Debug.Log("Player in RP");
         }
-        
+
+        // Fetch and activate splash animation
+        GameObject splash = platformObject.transform.Find("Splash").gameObject;
+        splash.SetActive(true);
+
     }
     public void noPlayerInPlatform(GameObject platformObject) // player collides with platforms
     {
@@ -171,7 +175,11 @@ public class GameStateManager : MonoBehaviour
             _platformRight = false;
             Debug.Log("Player left RP");
         }
-        
+
+        // Fetch and activate splash animation
+        GameObject splash = platformObject.transform.Find("Splash").gameObject;
+        splash.SetActive(false);
+
     }
     public void AddPlatformScore() // Add points and check if change of scene is needed
     {
