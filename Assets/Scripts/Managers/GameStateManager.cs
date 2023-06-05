@@ -29,6 +29,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject RingPrefab;
     private GameObject[] RingList;
 
+    //Level 3
+    public bool playersNear = false;
 
 
     // Start is called before the first frame update
@@ -229,5 +231,16 @@ public class GameStateManager : MonoBehaviour
         PlatformLeft.GetComponent<PlatformBehavior>().movePosition();
         PlatformRight.GetComponent<PlatformBehavior>().movePosition();
     }
+
+    //LEVEL 3 FUNCTIONS
+    public void PlayersAreNear()
+    {
+        playersNear = true;
+    }
+    public void PlayersAreNotNear()
+    {
+        playersNear = false;
+    }
+
 
 }

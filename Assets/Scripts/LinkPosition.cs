@@ -13,17 +13,16 @@ public class LinkPosition : MonoBehaviour
     private Color far = Color.red;
     private float distance;
     private GameObject link;
-    public bool isNear = false;
 
     void Start()
     {
         l = gameObject.AddComponent<LineRenderer>();
         l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         distance = 0.0f;
-        link = GameObject.Find("PlayerLink");
+        link = gameObject;
         CapsuleCollider capsuleCollider = link.GetComponent<CapsuleCollider>();
         capsuleCollider.direction = 2;
-        capsuleCollider.radius = 1;
+        capsuleCollider.radius = 0.7f;
         capsuleCollider.center = new Vector3(0, 0, 0);
     }
 
@@ -37,14 +36,14 @@ public class LinkPosition : MonoBehaviour
         {
             l.startColor = near;
             l.endColor = near;
-            isNear = true;
+            GameStateManager.Instance.PlayersAreNear();
 
         }
         else
         {
             l.startColor = far;
             l.endColor = far;
-            isNear = false;
+            GameStateManager.Instance.PlayersAreNotNear();
         }
 
         List<Vector3> pos = new List<Vector3>();
