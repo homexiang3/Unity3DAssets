@@ -34,6 +34,8 @@ public class GameStateManager : MonoBehaviour
     private bool waitingOnCoroutine = false;
     private ParticleSystem.MinMaxGradient _originalSplashColor;
 
+    //Level 3
+    public bool playersNear = false;
 
 
     // Start is called before the first frame update
@@ -309,5 +311,16 @@ public class GameStateManager : MonoBehaviour
         SplashTrail = particleSystem.trails;
         //SplashTrail.colorOverTrail = color;
     }
+
+    //LEVEL 3 FUNCTIONS
+    public void PlayersAreNear()
+    {
+        playersNear = true;
+    }
+    public void PlayersAreNotNear()
+    {
+        playersNear = false;
+    }
+
 
 }
