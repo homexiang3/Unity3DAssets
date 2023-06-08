@@ -529,9 +529,10 @@ MonoBehaviour:
   _platformMatched: 0
   _platformMaxTime: 15
   _platformMinScore: 4
-  _platformPenalization: 0.3
+  _platformPenalization: 0.5
   RingParent: {fileID: 871911794}
   RingPrefab: {fileID: 3378834050747702334, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+  wait: 3
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0

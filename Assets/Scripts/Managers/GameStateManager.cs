@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.NetworkInformation;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
@@ -28,7 +30,12 @@ public class GameStateManager : MonoBehaviour
     public GameObject RingParent;
     public GameObject RingPrefab;
     private GameObject[] RingList;
+    public int wait = 60;
+    private bool waitingOnCoroutine = false;
+    private ParticleSystem.MinMaxGradient _originalSplashColor;
 
+    //Level 3
+    public bool playersNear = false;
 
 
     // Start is called before the first frame update
@@ -72,6 +79,11 @@ public class GameStateManager : MonoBehaviour
         {
             Debug.Log("Level 2 STARTS: Search for the platforms!!");
 
+            // Save splash color (MinMaxGradient)
+            ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+            ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+            _originalSplashColor = SplashTrail.colorOverTrail;
+       
             // Prevents to repeat this part again (we only need to do it once)
             _level2Start = true;
 
@@ -96,8 +108,8 @@ public class GameStateManager : MonoBehaviour
                 newRing.transform.parent = RingParent.transform;
 
                 // Change ring radius
-                ParticleSystem particleSystem = newRing.GetComponent<ParticleSystem>();
-                ParticleSystem.ShapeModule ringShape = particleSystem.shape;
+                ParticleSystem particleSystemRing = newRing.GetComponent<ParticleSystem>();
+                ParticleSystem.ShapeModule ringShape = particleSystemRing.shape;
                 ringShape.radius = 8 + 2.5f*i;
 
                 // Set to HIDE
@@ -110,25 +122,41 @@ public class GameStateManager : MonoBehaviour
 
 
         // Level 2: Update score and move platforms
-        if(Time.time - _lastTime > _platformMaxTime  ||  _platformLeft && _platformRight) // If max waiting time has passed or players win
+        // Executed only if there is no Coroutine being performed
+        if(waitingOnCoroutine == false && (Time.time - _lastTime > _platformMaxTime  ||  _platformLeft && _platformRight)) // If max waiting time has passed or players win
         {
+            // Set the boolean of the Coroutine handler to true
+            waitingOnCoroutine = true;
+
             // Add points ONLY if players are above the platforms
             if (_platformLeft && _platformRight)
             {
                 Debug.Log("Players win 1 score");
-                AddPlatformScore(); // Players win score
+
+                // Change Splash color to blue (win)
+                ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+                ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+                SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //
+
+                particleSystem = PlatformRight.transform.Find("Splash").GetComponent<ParticleSystem>();
+                SplashTrail = particleSystem.trails;
+                SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //18, 99, 255, 255
+
+                //AddPlatformScore(); // Players win score
+                StartCoroutine(AddScoreCoroutine());
             }
             else
             {
                 Debug.Log("Players lose score");
-                RemovePlatformScore(); // Players lose score
+                //RemovePlatformScore(); // Players lose score
+                StartCoroutine(RemoveScoreCoroutine());
             }
 
             // Move platforms
-            MovePlatforms();
+            //MovePlatforms();
 
             // Update last time platforms moved
-            _lastTime = Time.time;
+            //_lastTime = Time.time;
         }
     }
 
@@ -182,6 +210,19 @@ public class GameStateManager : MonoBehaviour
         splash.SetActive(false);
 
     }
+    public void MovePlatforms() // move all platforms
+    {
+        PlatformLeft.GetComponent<PlatformBehavior>().movePosition(); // For Left platform
+        PlatformRight.GetComponent<PlatformBehavior>().movePosition(); // For right platform
+    }
+    public void updateLevel2Parameters() //move platforms and update the last time platforms moved
+    {
+        //Move the platforms into another random location
+        MovePlatforms();
+
+        //Update last time platforms moved
+        _lastTime = Time.time;
+    }
     public void AddPlatformScore() // Add points and check if change of scene is needed
     {
         // Set platforms to false (no player above)
@@ -201,8 +242,11 @@ public class GameStateManager : MonoBehaviour
             Debug.Log("Level 2 COMPLETED");
             SceneManager.LoadScene("Level3"); // Load scene 3
         }
-            
-
+        else
+        {
+            //Change the platforms position and update the lastTime parameter
+            updateLevel2Parameters();
+        }
     }
     public void RemovePlatformScore()// Remove points
     {
@@ -221,13 +265,62 @@ public class GameStateManager : MonoBehaviour
             RingList[(int)_platformMatched].SetActive(false); //HIDE ring
         }
 
-        
+        //Change the platforms position and update the lastTime parameter
+        updateLevel2Parameters();
+    }
+    IEnumerator AddScoreCoroutine()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(wait);
+
+        // Call to AddPlatformScore
+        AddPlatformScore();
+
+        // Return to normal color
+        ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+        ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+        SplashTrail.colorOverTrail = _originalSplashColor;
+
+        particleSystem = PlatformRight.transform.Find("Splash").GetComponent<ParticleSystem>();
+        SplashTrail = particleSystem.trails;
+        SplashTrail.colorOverTrail = _originalSplashColor;
+
+        // Set the boolean of the Coroutine handler to false
+        waitingOnCoroutine = false;
+    }
+    IEnumerator RemoveScoreCoroutine()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(wait);
+
+        // Call to RemovePlatformScore
+        RemovePlatformScore();
+
+        // Set the boolean of the Coroutine handler to false
+        waitingOnCoroutine = false;
+    }
+    public void changePlatformsSplashColor() // NOT BEING USED
+    {
+        //For platform left
+        ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+        ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+        //SplashTrail.colorOverTrail = color;
+
+        //For platform right
+        particleSystem = PlatformRight.transform.Find("Splash").GetComponent<ParticleSystem>();
+        SplashTrail = particleSystem.trails;
+        //SplashTrail.colorOverTrail = color;
     }
 
-    public void MovePlatforms()// move all platforms
+    //LEVEL 3 FUNCTIONS
+    public void PlayersAreNear()
     {
-        PlatformLeft.GetComponent<PlatformBehavior>().movePosition();
-        PlatformRight.GetComponent<PlatformBehavior>().movePosition();
+        playersNear = true;
     }
+    public void PlayersAreNotNear()
+    {
+        playersNear = false;
+    }
+
 
 }
