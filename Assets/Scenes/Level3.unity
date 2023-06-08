@@ -6482,8 +6482,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 232358144}
-  - component: {fileID: 232358146}
   - component: {fileID: 232358145}
+  - component: {fileID: 232358146}
   m_Layer: 0
   m_Name: SaturnMoonLink
   m_TagString: Untagged
@@ -6528,7 +6528,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 232358143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0685b6a498ece40b19a4ec70ed271f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go1: {fileID: 1245730268}
@@ -9711,8 +9711,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990806811}
-  - component: {fileID: 990806813}
   - component: {fileID: 990806812}
+  - component: {fileID: 990806813}
   m_Layer: 0
   m_Name: JupiterSaturnLink
   m_TagString: Untagged
@@ -9757,7 +9757,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 990806810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0685b6a498ece40b19a4ec70ed271f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go1: {fileID: 1828108163}
@@ -17934,8 +17934,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582812365}
-  - component: {fileID: 1582812367}
   - component: {fileID: 1582812366}
+  - component: {fileID: 1582812367}
   m_Layer: 0
   m_Name: MarsJupiterLink
   m_TagString: Untagged
@@ -17980,7 +17980,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1582812364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0685b6a498ece40b19a4ec70ed271f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go1: {fileID: 211491753}
@@ -21425,8 +21425,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2123956125}
-  - component: {fileID: 2123956127}
   - component: {fileID: 2123956126}
+  - component: {fileID: 2123956127}
   m_Layer: 0
   m_Name: EarthMarsLink
   m_TagString: Untagged
@@ -21471,7 +21471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2123956124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0685b6a498ece40b19a4ec70ed271f, type: 3}
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go1: {fileID: 1378233858}
