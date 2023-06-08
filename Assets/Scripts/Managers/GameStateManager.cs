@@ -35,7 +35,14 @@ public class GameStateManager : MonoBehaviour
     private ParticleSystem.MinMaxGradient _originalSplashColor;
 
     //Level 3
-    public bool playersNear = false;
+    private bool playersNear = false;
+    private bool earthPlatform = false; //1
+    private bool marsPlatform = false; //2
+    private bool jupiterPlatform = false; //3
+    private bool saturnPlatform = false; //4
+    private bool moonPlatform = false; //5
+   
+
 
 
     // Start is called before the first frame update
@@ -328,6 +335,40 @@ public class GameStateManager : MonoBehaviour
     {
         playersNear = false;
         
+    }
+    public bool isPlayerNear()
+    {
+        return playersNear;
+    }
+
+    public void placePlatform(int code)
+    {
+        switch (code)
+        {
+            case 5:
+                moonPlatform = true;
+                print("Moon platform active");
+                break;
+            case 4:
+                saturnPlatform = true;
+                print("Saturn platform active");
+                break;
+            case 3:
+                jupiterPlatform = true;
+                print("Jupiter platform active");
+                break;
+            case 2:
+                marsPlatform = true;
+                print("Mars platform active");
+                break;
+            case 1:
+                earthPlatform = true;
+                print("Earth platform active");
+                break;
+            default:
+                print("Wrong platform code");
+                break;
+        }
     }
 
 

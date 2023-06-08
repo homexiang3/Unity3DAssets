@@ -21369,6 +21369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  platformTarget: {fileID: 1378233858}
+  planetCode: 1
 --- !u!54 &2066192013
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -35,10 +35,6 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("Alien is Happy");
             audioPlayer.Play();
         }
-        if (collision.tag == "Planet")
-        {
-            Debug.Log("Planet Collision");
-        }
         //L1: SHIP PIECES
         if (collision.tag == "ShipBody" || collision.tag == "ShipArms" || collision.tag == "ShipMotor" || collision.tag == "ShipEye") // Level1: Cuando player colisiona con piezas del ship
         {
