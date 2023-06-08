@@ -30,7 +30,7 @@ public class GameStateManager : MonoBehaviour
     private bool _level2Start = false;
     public GameObject RingPrefab = null;
     private GameObject[] RingList;
-    public int wait = 60;
+    public int wait;
     private bool waitingOnCoroutine = false;
     private ParticleSystem.MinMaxGradient _originalSplashColor;
 
@@ -73,7 +73,6 @@ public class GameStateManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F2))
         {
             SceneManager.LoadScene("Level2");
-            AlienInShip(); //to load variables
         }
         if (Input.GetKeyUp(KeyCode.F3))
         {
@@ -86,6 +85,7 @@ public class GameStateManager : MonoBehaviour
         // Executed only if there is no Coroutine being performed
         if(_level2Start && waitingOnCoroutine == false && ((Time.time - _lastTime) > _platformMaxTime  ||  _platformLeft && _platformRight)) // If max waiting time has passed or players win
         {
+            Debug.Log("Entering on coroutines");
             triggerLevel2Coroutines();
         }
     }
