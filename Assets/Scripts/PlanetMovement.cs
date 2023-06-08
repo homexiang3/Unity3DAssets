@@ -61,6 +61,7 @@ public class PlanetMovement : MonoBehaviour
             colliding = true;
             var collisionPoint = other.ClosestPoint(transform.position);
             collisionNormal = transform.position - collisionPoint;
+            collisionNormal.y = 0; //avoid vertical movement
             // Print how many points are colliding with this transform
             Debug.Log(collisionNormal);
         }
