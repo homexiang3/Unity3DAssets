@@ -542,6 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab64d887bd048d24c93ed0bbb7db30c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _platformMatched: 0
+  _platformMaxTime: 15
+  _platformMinScore: 4
+  _platformPenalization: 0.5
+  RingPrefab: {fileID: 3378834050747702334, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+  wait: 60
+  playersNear: 0
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0

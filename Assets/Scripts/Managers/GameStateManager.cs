@@ -17,8 +17,9 @@ public class GameStateManager : MonoBehaviour
     //private int _shipBody = 0; //level 1
 
     //Level 2 
-    public GameObject PlatformLeft;
-    public GameObject PlatformRight;
+    private GameObject PlatformLeft = null;
+    private GameObject PlatformRight = null;
+    private GameObject RingParent = null;
     private bool _platformLeft = false; // If left platform has a player
     private bool _platformRight = false; // If right platform has a player
     public double _platformMatched = 0; // Players score of Level2
@@ -27,8 +28,7 @@ public class GameStateManager : MonoBehaviour
     public double _platformPenalization = 0.5; // Points penalization in case of no matching
     private float _lastTime = 0f; // How much time has passed since
     private bool _level2Start = false;
-    public GameObject RingParent;
-    public GameObject RingPrefab;
+    public GameObject RingPrefab = null;
     private GameObject[] RingList;
     public int wait = 60;
     private bool waitingOnCoroutine = false;
@@ -66,97 +66,20 @@ public class GameStateManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F2))
         {
             SceneManager.LoadScene("Level2");
-            _level2Start = false; // Handle platforms find
+            AlienInShip(); //to load variables
         }
         if (Input.GetKeyUp(KeyCode.F3))
         {
+            _level2Start = false; //stop level2 coroutines
             SceneManager.LoadScene("Level3");
-        }
-
-
-        // Loevel 2: load variables
-        if (_level2Start == false && SceneManager.GetActiveScene().name == "Level2")
-        {
-            Debug.Log("Level 2 STARTS: Search for the platforms!!");
-
-            // Save splash color (MinMaxGradient)
-            ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
-            ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
-            _originalSplashColor = SplashTrail.colorOverTrail;
-       
-            // Prevents to repeat this part again (we only need to do it once)
-            _level2Start = true;
-
-            //Move plaforms to get a random first position
-            MovePlatforms();
-
-            //Set _lastTime to current time
-            _lastTime = Time.time;
-
-            // Create rings
-            RingList = new GameObject[(int)_platformMinScore];
-
-            for (int i = 0; i < _platformMinScore; i++)
-            {
-                // Create a new Ring, with name ring<i+1>
-                var newRing = Instantiate(RingPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                newRing.name = "ring" + (i + 1);
-
-                // Set correct position, rotation and parent
-                newRing.transform.position = RingParent.transform.position;
-                newRing.transform.rotation = RingParent.transform.rotation;
-                newRing.transform.parent = RingParent.transform;
-
-                // Change ring radius
-                ParticleSystem particleSystemRing = newRing.GetComponent<ParticleSystem>();
-                ParticleSystem.ShapeModule ringShape = particleSystemRing.shape;
-                ringShape.radius = 8 + 2.5f*i;
-
-                // Set to HIDE
-                newRing.SetActive(false);
-
-                // Add to RingList
-                RingList[i] = newRing;
-            }
         }
 
 
         // Level 2: Update score and move platforms
         // Executed only if there is no Coroutine being performed
-        if(waitingOnCoroutine == false && (Time.time - _lastTime > _platformMaxTime  ||  _platformLeft && _platformRight)) // If max waiting time has passed or players win
+        if(_level2Start && waitingOnCoroutine == false && ((Time.time - _lastTime) > _platformMaxTime  ||  _platformLeft && _platformRight)) // If max waiting time has passed or players win
         {
-            // Set the boolean of the Coroutine handler to true
-            waitingOnCoroutine = true;
-
-            // Add points ONLY if players are above the platforms
-            if (_platformLeft && _platformRight)
-            {
-                Debug.Log("Players win 1 score");
-
-                // Change Splash color to blue (win)
-                ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
-                ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
-                SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //
-
-                particleSystem = PlatformRight.transform.Find("Splash").GetComponent<ParticleSystem>();
-                SplashTrail = particleSystem.trails;
-                SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //18, 99, 255, 255
-
-                //AddPlatformScore(); // Players win score
-                StartCoroutine(AddScoreCoroutine());
-            }
-            else
-            {
-                Debug.Log("Players lose score");
-                //RemovePlatformScore(); // Players lose score
-                StartCoroutine(RemoveScoreCoroutine());
-            }
-
-            // Move platforms
-            //MovePlatforms();
-
-            // Update last time platforms moved
-            //_lastTime = Time.time;
+            triggerLevel2Coroutines();
         }
     }
 
@@ -173,7 +96,89 @@ public class GameStateManager : MonoBehaviour
     public void AlienInShip() // start level 2 when alien is in ship
     {
         _level2Start = true;
+        loadLevel2Vars();
     }
+    public void triggerLevel2Coroutines()
+    {
+        // Set the boolean of the Coroutine handler to true
+        waitingOnCoroutine = true;
+
+        // Add points ONLY if players are above the platforms
+        if (_platformLeft && _platformRight)
+        {
+            Debug.Log("Players win 1 score");
+
+            // Change Splash color to blue (win)
+            ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+            ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+            SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //
+
+            particleSystem = PlatformRight.transform.Find("Splash").GetComponent<ParticleSystem>();
+            SplashTrail = particleSystem.trails;
+            SplashTrail.colorOverTrail = new UnityEngine.Color(255, 255, 255, 255); //18, 99, 255, 255
+
+            //AddPlatformScore(); // Players win score
+            StartCoroutine(AddScoreCoroutine());
+        }
+        else
+        {
+            Debug.Log("Players lose score");
+            //RemovePlatformScore(); // Players lose score
+            StartCoroutine(RemoveScoreCoroutine());
+        }
+
+        // Move platforms
+        //MovePlatforms();
+
+        // Update last time platforms moved
+        //_lastTime = Time.time;
+    }
+    public void loadLevel2Vars()
+    {
+        Debug.Log("Level 2 STARTS: Search for the platforms!!");
+
+        PlatformLeft = GameObject.FindWithTag("LeftPlatform");
+        PlatformRight = GameObject.FindWithTag("RightPlatform");
+        RingParent = GameObject.FindWithTag("RingParent");
+
+        // Save splash color (MinMaxGradient)
+        ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
+        ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
+        _originalSplashColor = SplashTrail.colorOverTrail;
+
+        //Move plaforms to get a random first position
+        MovePlatforms();
+
+        //Set _lastTime to current time
+        _lastTime = Time.time;
+
+        // Create rings
+        RingList = new GameObject[(int)_platformMinScore];
+
+        for (int i = 0; i < _platformMinScore; i++)
+        {
+            // Create a new Ring, with name ring<i+1>
+            var newRing = Instantiate(RingPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            newRing.name = "ring" + (i + 1);
+
+            // Set correct position, rotation and parent
+            newRing.transform.position = RingParent.transform.position;
+            newRing.transform.rotation = RingParent.transform.rotation;
+            newRing.transform.parent = RingParent.transform;
+
+            // Change ring radius
+            ParticleSystem particleSystemRing = newRing.GetComponent<ParticleSystem>();
+            ParticleSystem.ShapeModule ringShape = particleSystemRing.shape;
+            ringShape.radius = 8 + 2.5f * i;
+
+            // Set to HIDE
+            newRing.SetActive(false);
+
+            // Add to RingList
+            RingList[i] = newRing;
+        }
+    }
+
     public void playerInPlatform(GameObject platformObject) // player collides with platform1 tag
     {
         if (platformObject == PlatformLeft)
@@ -240,6 +245,7 @@ public class GameStateManager : MonoBehaviour
         if (_platformMatched >= _platformMinScore) // If players have achieved enough points
         {
             Debug.Log("Level 2 COMPLETED");
+            _level2Start = false;
             SceneManager.LoadScene("Level3"); // Load scene 3
         }
         else
@@ -316,10 +322,12 @@ public class GameStateManager : MonoBehaviour
     public void PlayersAreNear()
     {
         playersNear = true;
+        
     }
     public void PlayersAreNotNear()
     {
         playersNear = false;
+        
     }
 
 

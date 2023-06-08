@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinkPosition : MonoBehaviour
-
+public class LinkPlanets : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject go1;
@@ -11,40 +10,23 @@ public class LinkPosition : MonoBehaviour
     LineRenderer l;
     private Color near = Color.green;
     private Color far = Color.red;
-    private float distance;
-
+    // Start is called before the first frame update
     void Start()
     {
         l = gameObject.AddComponent<LineRenderer>();
         l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-        distance = 0.0f;
         CapsuleCollider capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
         capsuleCollider.direction = 2;
         capsuleCollider.radius = 0.7f;
         capsuleCollider.center = new Vector3(0, 0, 0);
+        setCollider();
+
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
-
-        distance = Vector3.Distance(go1.transform.position, go2.transform.position);
-        if(distance < 20.0f)
-        {
-            l.startColor = near;
-            l.endColor = near;
-            GameStateManager.Instance.PlayersAreNear();
-
-        }
-        else
-        {
-            l.startColor = far;
-            l.endColor = far;
-            GameStateManager.Instance.PlayersAreNotNear();
-        }
-
+        //line render
         List<Vector3> pos = new List<Vector3>();
         pos.Add(go1.transform.position);
         pos.Add(go2.transform.position);
@@ -52,11 +34,9 @@ public class LinkPosition : MonoBehaviour
         l.endWidth = 0.5f;
         l.SetPositions(pos.ToArray());
         l.useWorldSpace = true;
-        ColliderUpdate();
     }
 
-
-    void ColliderUpdate()
+    void setCollider()
     {
         Vector3 startPos = l.GetPosition(0);
         Vector3 endPos = l.GetPosition(1);
