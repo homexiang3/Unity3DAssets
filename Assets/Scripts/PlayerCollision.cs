@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public AudioClip alien;
+    public AudioClip grab;
+    public AudioClip effort;
 
     private GameObject ObjectHolded;
     public Material Material;
@@ -48,11 +50,16 @@ public class PlayerCollision : MonoBehaviour
         {
             GameStateManager.Instance.HoldingShipBody();
             ObjectHolded = collision.gameObject;
+            if(GameStateManager.Instance.GetShipBody() == 2)
+            {
+                SoundManager.Instance.Play(effort);
+            }
         }
         if (collision.tag == "ShipArms" || collision.tag == "ShipMotor" || collision.tag == "ShipEye") // Level1: Cuando player colisiona con piezas del ship
         {
             Debug.Log(collision.tag);
             ObjectHolded = collision.gameObject;
+            SoundManager.Instance.Play(grab);
         }
 
         if (collision.tag == "ShipTemplate") // L1: Player next to the center (where ship should be placed)
