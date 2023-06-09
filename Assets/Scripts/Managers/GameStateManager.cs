@@ -11,7 +11,12 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     private static GameStateManager _instance;
-
+    //Sound
+    public AudioClip forest;
+    public AudioClip space;
+    private bool loadScene1 = false;
+    private bool loadScene2 = false;
+    private bool loadScene3 = false;
     //Level 1
     private int _spaceParts = 0; // Players score of Level1
     private int _shipBody = 0; //level 1
@@ -65,6 +70,22 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //sound of each level
+        if(SceneManager.GetActiveScene().name == "Level1" && loadScene1 == false)
+        {
+            SoundManager.Instance.PlayMusic(forest, true);
+            loadScene1 = true;
+        }
+        if (SceneManager.GetActiveScene().name == "Level2" && loadScene2 == false)
+        {
+            SoundManager.Instance.PlayMusic(forest, true);
+            loadScene2 = true;
+        }
+        if (SceneManager.GetActiveScene().name == "Level3" && loadScene3 == false)
+        {
+            SoundManager.Instance.PlayMusic(space, true);
+            loadScene3 = true;
+        }
         // Debug
         if (Input.GetKeyUp(KeyCode.F1))
         {

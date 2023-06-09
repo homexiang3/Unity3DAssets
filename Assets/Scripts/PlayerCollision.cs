@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public AudioSource audioPlayer;
+    public AudioClip alien;
 
     private GameObject ObjectHolded;
     public Material Material;
@@ -38,10 +38,10 @@ public class PlayerCollision : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         //Alien
-        if (collision.tag == "Alien"  && !audioPlayer.isPlaying)
+        if (collision.tag == "Alien")
         {
             Debug.Log("Alien is Happy");
-            audioPlayer.Play();
+            SoundManager.Instance.Play(alien);
         }
         //L1: SHIP PIECES
         if(collision.tag == "ShipBody")
