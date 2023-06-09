@@ -17,6 +17,7 @@ public class GameStateManager : MonoBehaviour
     public AudioClip addRing;
     public AudioClip deleteRing;
     public AudioClip platformSound;
+    public AudioClip disco; // Level 2 Music
 
     private bool loadScene1 = false;
     private bool loadScene2 = false;
@@ -82,7 +83,7 @@ public class GameStateManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Level2" && loadScene2 == false)
         {
-            SoundManager.Instance.PlayMusic(forest, true);
+            //SoundManager.Instance.PlayMusic(forest, true);
             loadScene2 = true;
         }
         if (SceneManager.GetActiveScene().name == "Level3" && loadScene3 == false)
@@ -168,6 +169,7 @@ public class GameStateManager : MonoBehaviour
     {
         _level2Start = true;
         loadLevel2Vars();
+        SoundManager.Instance.PlayMusic(disco, true); // Music SoundManager
     }
     public void triggerLevel2Coroutines()
     {
