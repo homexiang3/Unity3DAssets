@@ -18559,7 +18559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c03925f438cb5449e43117cc20ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioPlayer: {fileID: 1830939090}
+  alien: {fileID: 0}
+  grab: {fileID: 0}
+  effort: {fileID: 0}
   Material: {fileID: 2100000, guid: ef1e2b425a317284c8caac0c02bf83d5, type: 2}
   Material001: {fileID: 2100000, guid: bb3dc0b7ab51ff54cb2d76419af927c1, type: 2}
   Material002: {fileID: 2100000, guid: 1880c729c11e5434e9a3cda703fee387, type: 2}
@@ -19447,6 +19449,7 @@ GameObject:
   - component: {fileID: 1054098989}
   - component: {fileID: 1054098988}
   - component: {fileID: 1054098987}
+  - component: {fileID: 1054098990}
   m_Layer: 0
   m_Name: Player Link
   m_TagString: Player Link
@@ -19580,6 +19583,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1054098990
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054098986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!1 &1068666310
 GameObject:
   m_ObjectHideFlags: 0
@@ -33706,7 +33723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c03925f438cb5449e43117cc20ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioPlayer: {fileID: 1830939090}
+  alien: {fileID: 0}
+  grab: {fileID: 0}
+  effort: {fileID: 0}
   Material: {fileID: 2100000, guid: ef1e2b425a317284c8caac0c02bf83d5, type: 2}
   Material001: {fileID: 2100000, guid: bb3dc0b7ab51ff54cb2d76419af927c1, type: 2}
   Material002: {fileID: 2100000, guid: 1880c729c11e5434e9a3cda703fee387, type: 2}
