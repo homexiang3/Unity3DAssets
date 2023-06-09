@@ -14,6 +14,10 @@ public class GameStateManager : MonoBehaviour
     //Sound
     public AudioClip forest;
     public AudioClip space;
+    public AudioClip addRing;
+    public AudioClip deleteRing;
+    public AudioClip platformSound;
+
     private bool loadScene1 = false;
     private bool loadScene2 = false;
     private bool loadScene3 = false;
@@ -175,6 +179,9 @@ public class GameStateManager : MonoBehaviour
         {
             Debug.Log("Players win 1 score");
 
+            // Sound Effect
+            //SoundManager.Instance.Play(addRing);
+
             // Change Splash color to blue (win)
             ParticleSystem particleSystem = PlatformLeft.transform.Find("Splash").GetComponent<ParticleSystem>();
             ParticleSystem.TrailModule SplashTrail = particleSystem.trails;
@@ -190,6 +197,10 @@ public class GameStateManager : MonoBehaviour
         else
         {
             Debug.Log("Players lose score");
+
+            // Sound Effect
+            SoundManager.Instance.Play(deleteRing);
+
             //RemovePlatformScore(); // Players lose score
             StartCoroutine(RemoveScoreCoroutine());
         }
@@ -251,11 +262,13 @@ public class GameStateManager : MonoBehaviour
         if (platformObject == PlatformLeft)
         {
             _platformLeft = true;
+            SoundManager.Instance.Play(platformSound); // Sound Effect
             Debug.Log("Player in LP");
         }
         else
         {
             _platformRight = true;
+            SoundManager.Instance.Play(platformSound); // Sound Effect
             Debug.Log("Player in RP");
         }
 
@@ -345,6 +358,9 @@ public class GameStateManager : MonoBehaviour
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(wait);
+
+        // Sound Effect
+        SoundManager.Instance.Play(addRing);
 
         // Call to AddPlatformScore
         AddPlatformScore();
