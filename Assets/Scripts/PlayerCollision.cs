@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public AudioSource audioPlayer;
+    public AudioClip alien;
 
     private GameObject ObjectHolded;
     public Material Material;
@@ -27,6 +27,12 @@ public class PlayerCollision : MonoBehaviour
             {
                 ObjectHolded.transform.position = GameStateManager.Instance.GetMiddlePoint(gameObject.transform.position);
             }
+            else if (ObjectHolded.tag == "ShipBody" && GameStateManager.Instance.GetShipBody() < 2) //Restore y value of body (body falls)
+            {
+                Vector3 vec = ObjectHolded.transform.position;
+                vec.y = -20;
+                ObjectHolded.transform.position = vec;
+            }
             else if(ObjectHolded.tag != "ShipBody")
             {
                 ObjectHolded.transform.position = transform.position; // We move the object according to the player position
@@ -38,10 +44,10 @@ public class PlayerCollision : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         //Alien
-        if (collision.tag == "Alien"  && !audioPlayer.isPlaying)
+        if (collision.tag == "Alien")
         {
             Debug.Log("Alien is Happy");
-            audioPlayer.Play();
+            SoundManager.Instance.Play(alien);
         }
         //L1: SHIP PIECES
         if(collision.tag == "ShipBody")
