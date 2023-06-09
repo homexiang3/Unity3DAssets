@@ -550,6 +550,8 @@ MonoBehaviour:
   shipRepair: {fileID: 8300000, guid: eb8b248f1ea5c8145a650fd883ee9d91, type: 3}
   regularVictory: {fileID: 8300000, guid: 09fb64012d886f04883ab322e4ad482d, type: 3}
   finalVictory: {fileID: 8300000, guid: 0240643ada333024eb965fbb2a8246d5, type: 3}
+  disco: {fileID: 8300000, guid: 947d786e3d7f2d24aa3e57add92c6b8a, type: 3}
+
   _platformMatched: 0
   _platformMaxTime: 5
   _platformMinScore: 4

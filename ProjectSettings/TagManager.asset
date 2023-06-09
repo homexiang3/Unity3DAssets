@@ -17,6 +17,9 @@ TagManager:
   - RightPlatform
   - LeftPlatform
   - RingParent
+  - Planet Link
+  - Planet Slot
+  - Player Link
   layers:
   - Default
   - TransparentFX

@@ -4,74 +4,108 @@ using UnityEngine;
 
 public class PlanetMovement : MonoBehaviour
 {
+    // Enums
+    private enum planetStatus
+    {
+        idle,
+        moving,
+        placing,
+        placed
+    }
+
+    // Public attributes
     public int speed;
-    private Vector3 collisionNormal;
-    private bool colliding;
-    private bool placing;
-    private bool placed;
-    public GameObject platformTarget;
     public int planetCode;
+    public GameObject targetSlot;
+
+    // Private attributes
+    private planetStatus status;
+    private Vector3 collisionNormal;
+
     // Start is called before the first frame update
     void Start()
     {
+        status = planetStatus.idle;
         collisionNormal = new Vector3(0, 0, 0);
-        colliding = false;
-        placing = false;
-        placed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!placed)
+        switch(status)
         {
-            if (colliding)
-            {
-                Debug.Log("moving");
-                var step = speed * Time.deltaTime; // calculate distance to move
-                var new_position = collisionNormal * step;
-                // check here if new position is an already linked planet collider
-                //then update the value
-                transform.Translate(new_position, Space.World);
+            // Don't do anything
+            case planetStatus.placed:
+                break;
 
-            }
-            if (placing)
-            {
-                transform.position = Vector3.Lerp(transform.position, platformTarget.transform.position, Time.deltaTime);
-            }
-            if (Vector3.Distance(transform.position,platformTarget.transform.position) < 0.3f)
-            {
-                placed = true;
-                GameStateManager.Instance.placePlatform(planetCode);
-            }
+            // Move the planet in the direction of the normal to the player link
+            case planetStatus.moving:
+                {
+                    // Calculate distance to move
+                    var step = speed * Time.deltaTime;
+
+                    // Predict new position
+                    var new_position = collisionNormal * step;
+
+                    // TODO: Check here if new position collides with a planet link
+
+                    // Set new position
+                    transform.Translate(new_position, Space.World);
+
+                    // Leave
+                    break;
+                }
+
+            // Start placing animation
+            case planetStatus.placing:
+                {
+                    // Lerp planet position through targetSlot position
+                    transform.position = Vector3.Lerp(transform.position, targetSlot.transform.position, Time.deltaTime);
+
+                    // Get distance between planet and targetSlot
+                    float distance = Vector3.Distance(transform.position, targetSlot.transform.position);
+
+                    // Check placed state
+                    if (distance < 0.3f)
+                    {
+                        status = planetStatus.placed;
+                        GameStateManager.Instance.placePlatform(planetCode);
+                    }
+
+                    // Leave
+                    break;
+                }
         }
-        
-        
     }
 
+    // Methods
+    private Vector3 getCollisionNormal(Collider collider)
+    {
+        Vector3 collisionPoint = collider.ClosestPoint(transform.position);
+        Vector3 normal = Vector3.Scale(new Vector3(1,0,1), (transform.position - collisionPoint));
+        return normal;
+    }
+
+    // Triggers
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Planet")
-        {
-            placing = true;
-            Debug.Log("Planet Collision");
-        }
-        if (GameStateManager.Instance.isPlayerNear())
-        {
-            colliding = true;
-            var collisionPoint = other.ClosestPoint(transform.position);
-            collisionNormal = transform.position - collisionPoint;
-            collisionNormal.y = 0; //avoid vertical movement
-            // Print how many points are colliding with this transform
-            Debug.Log(collisionNormal);
-        }
-       
+        // Get gameobject
+        GameObject collision = other.gameObject;
 
+        // Check targetSlot collision
+        if (collision == targetSlot)
+            status = planetStatus.placing;
+        
+        // Check player link collision
+        if (collision.tag == "Player Link" && GameStateManager.Instance.isPlayerNear())
+        {
+            status = planetStatus.moving;
+            collisionNormal = getCollisionNormal(other);
+        }
     }
+
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("exit");
-        colliding = false;
-
+        status = planetStatus.idle;
     }
 }

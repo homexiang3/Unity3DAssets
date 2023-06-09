@@ -10,6 +10,7 @@ public class LinkPlanets : MonoBehaviour
     LineRenderer l;
     private Color near = Color.green;
     private Color far = Color.red;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,6 @@ public class LinkPlanets : MonoBehaviour
         capsuleCollider.radius = 0.7f;
         capsuleCollider.center = new Vector3(0, 0, 0);
         setCollider();
-
     }
 
     // Update is called once per frame

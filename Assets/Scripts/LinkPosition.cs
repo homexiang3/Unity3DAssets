@@ -3,33 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LinkPosition : MonoBehaviour
-
 {
-    // Start is called before the first frame update
+    // Public attributes
     public GameObject go1;
     public GameObject go2;
-    LineRenderer l;
-    private Color near = Color.green;
-    private Color far = Color.red;
-    private float distance;
 
+    // Private attributes
+    private float distance;
+    private Color near;
+    private Color far;
+    private LineRenderer l;
+    private CapsuleCollider c;
+
+    // Start is called before the first frame update
     void Start()
     {
-        l = gameObject.AddComponent<LineRenderer>();
-        l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+        // Init private attributes
         distance = 0.0f;
-        CapsuleCollider capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-        capsuleCollider.direction = 2;
-        capsuleCollider.radius = 0.7f;
-        capsuleCollider.center = new Vector3(0, 0, 0);
+        near = Color.green;
+        far = Color.red;
+        l = gameObject.GetComponent<LineRenderer>();
+        c = gameObject.GetComponent<CapsuleCollider>();
+
+        // Set line renderer properties
+        l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+
+        // Set collider properties
+        c.direction = 2;
+        c.radius = 0.7f;
+        c.center = new Vector3(0, 0, 0);
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
-
         distance = Vector3.Distance(go1.transform.position, go2.transform.position);
         if(distance < 20.0f)
         {
@@ -68,8 +75,7 @@ public class LinkPosition : MonoBehaviour
         Vector3 centerCoord = startPos + dir2;
 
         gameObject.transform.position = centerCoord;
-        CapsuleCollider capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-        capsuleCollider.height = height;
+        c.height = height;
         gameObject.transform.LookAt(go2.transform);
     }
 }
