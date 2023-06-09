@@ -547,7 +547,11 @@ MonoBehaviour:
   addRing: {fileID: 8300000, guid: 027e4d2b91178514781897d5a0c27a34, type: 3}
   deleteRing: {fileID: 8300000, guid: 74f559000c5655c4f88e4870e461c424, type: 3}
   platformSound: {fileID: 8300000, guid: 6b30314e5c8aefa40abae315f9af32fc, type: 3}
+  shipRepair: {fileID: 8300000, guid: eb8b248f1ea5c8145a650fd883ee9d91, type: 3}
+  regularVictory: {fileID: 8300000, guid: 09fb64012d886f04883ab322e4ad482d, type: 3}
+  finalVictory: {fileID: 8300000, guid: 0240643ada333024eb965fbb2a8246d5, type: 3}
   disco: {fileID: 8300000, guid: 947d786e3d7f2d24aa3e57add92c6b8a, type: 3}
+
   _platformMatched: 0
   _platformMaxTime: 5
   _platformMinScore: 4
@@ -1568,9 +1572,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1265520737}
     m_Modifications:
     - target: {fileID: -6960835336117005309, guid: cc91c8ba8b9a34f4d99e70d721f60b64, type: 3}
+      propertyPath: grab
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a60cd0be1de5fd47b51acb33583bf38, type: 3}
+    - target: {fileID: -6960835336117005309, guid: cc91c8ba8b9a34f4d99e70d721f60b64, type: 3}
       propertyPath: alien
       value: 
       objectReference: {fileID: 8300000, guid: c0c53a3cbb63c47429afa0ff70f664f0, type: 3}
+    - target: {fileID: -6960835336117005309, guid: cc91c8ba8b9a34f4d99e70d721f60b64, type: 3}
+      propertyPath: effort
+      value: 
+      objectReference: {fileID: 8300000, guid: 64f419fea583c49488613fd7051af446, type: 3}
     - target: {fileID: -6960835336117005309, guid: cc91c8ba8b9a34f4d99e70d721f60b64, type: 3}
       propertyPath: Material003
       value: 
@@ -1776,9 +1788,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 838648970}
     m_Modifications:
     - target: {fileID: -4929310416219099118, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: grab
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a60cd0be1de5fd47b51acb33583bf38, type: 3}
+    - target: {fileID: -4929310416219099118, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: alien
       value: 
       objectReference: {fileID: 8300000, guid: c0c53a3cbb63c47429afa0ff70f664f0, type: 3}
+    - target: {fileID: -4929310416219099118, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: effort
+      value: 
+      objectReference: {fileID: 8300000, guid: 64f419fea583c49488613fd7051af446, type: 3}
     - target: {fileID: -4929310416219099118, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: Material003
       value: 
@@ -9864,7 +9884,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 6, z: 3}
+  m_Size: {x: 6, y: 6, z: 3}
   m_Center: {x: 0, y: 1.4, z: 0}
 --- !u!65 &1807062243566574619
 BoxCollider:

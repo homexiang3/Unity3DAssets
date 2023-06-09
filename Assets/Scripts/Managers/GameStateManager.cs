@@ -19,6 +19,11 @@ public class GameStateManager : MonoBehaviour
     public AudioClip addRing;
     public AudioClip deleteRing;
     public AudioClip platformSound;
+
+    public AudioClip shipRepair;
+    public AudioClip regularVictory;
+    public AudioClip finalVictory;
+
     public AudioClip disco; // Level 2 Music
 
     // Scene loader
@@ -132,10 +137,14 @@ public class GameStateManager : MonoBehaviour
     // LEVEL 1 FUNCTIONS
     public void AddSpacePart() // player moves part to ship template
     {
+        SoundManager.Instance.Play(shipRepair);
         _spaceParts += 1;
         if(_spaceParts== 4)
+        {
+            SoundManager.Instance.Play(regularVictory);
             SceneManager.LoadScene("Level2");
-    }
+        }
+     }
 
     public void HoldingShipBody()
     {
@@ -341,6 +350,7 @@ public class GameStateManager : MonoBehaviour
         {
             Debug.Log("Level 2 COMPLETED");
             _level2Start = false;
+            SoundManager.Instance.Play(regularVictory);
             SceneManager.LoadScene("Level3"); // Load scene 3
         }
         else
@@ -460,7 +470,10 @@ public class GameStateManager : MonoBehaviour
                 print("Wrong platform code");
                 break;
         }
+        //IF ALL PLATFORM TRUE END GAME TO DO
+        SoundManager.Instance.Play(finalVictory);
     }
 
 
 }
+
