@@ -63,15 +63,21 @@ public class GameStateManager : MonoBehaviour
     /////////////////// Level 2 \\\\\\\\\\\\\\\\\\\\\
     
     // Enums
-    
+    private enum planets
+    {
+        Earth,
+        Mars,
+        Jupiter,
+        Saturn,
+        Moon,
+        Mercury,
+        Neptune
+    }
 
     // Private attributes
     private bool playersNear = false;
-    private bool earthPlatform = false; //1
-    private bool marsPlatform = false; //2
-    private bool jupiterPlatform = false; //3
-    private bool saturnPlatform = false; //4
-    private bool moonPlatform = false; //5
+    private static int numPlanets = Enum.GetNames(typeof(planets)).Length;
+    private bool[] planetSlotStatus = new bool[numPlanets];
    
     // Start is called before the first frame update
     public static GameStateManager Instance
@@ -444,33 +450,39 @@ public class GameStateManager : MonoBehaviour
 
     public void placePlatform(int code)
     {
-        switch (code)
+        // Get planet code
+        planets planetCode = (planets) code;
+
+        // Check planet code
+        switch (planetCode)
         {
-            case 5:
-                moonPlatform = true;
-                print("Moon platform active");
+            case planets.Earth:
+                planetSlotStatus[(int)planets.Earth] = true;
                 break;
-            case 4:
-                saturnPlatform = true;
-                print("Saturn platform active");
+            case planets.Mars:
+                planetSlotStatus[(int)planets.Mars] = true;
                 break;
-            case 3:
-                jupiterPlatform = true;
-                print("Jupiter platform active");
+            case planets.Jupiter:
+                planetSlotStatus[(int)planets.Jupiter] = true;
                 break;
-            case 2:
-                marsPlatform = true;
-                print("Mars platform active");
+            case planets.Saturn:
+                planetSlotStatus[(int)planets.Saturn] = true;
                 break;
-            case 1:
-                earthPlatform = true;
-                print("Earth platform active");
+            case planets.Moon:
+                planetSlotStatus[(int)planets.Moon] = true;
+                break;
+            case planets.Mercury:
+                planetSlotStatus[(int)planets.Mercury] = true;
+                break;
+            case planets.Neptune:
+                planetSlotStatus[(int)planets.Neptune] = true;
                 break;
             default:
                 print("Wrong platform code");
                 break;
         }
-        //IF ALL PLATFORM TRUE END GAME TO DO
+
+        // Check win condition
         SoundManager.Instance.Play(finalVictory);
     }
 
