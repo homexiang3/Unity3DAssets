@@ -27,9 +27,8 @@ public class PlayerCollision : MonoBehaviour
             {
                 ObjectHolded.transform.position = GameStateManager.Instance.GetMiddlePoint(gameObject.transform.position);
             }
-            else if (ObjectHolded.tag == "ShipBody" && GameStateManager.Instance.GetShipBody() < 2)
+            else if (ObjectHolded.tag == "ShipBody" && GameStateManager.Instance.GetShipBody() < 2) //Restore y value of body (body falls)
             {
-                Debug.Log("HELOO");
                 Vector3 vec = ObjectHolded.transform.position;
                 vec.y = -20;
                 ObjectHolded.transform.position = vec;
