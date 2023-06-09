@@ -23,7 +23,15 @@ public class PlayerCollision : MonoBehaviour
     {
         if (ObjectHolded != null) // If an object is holded
         {
-            ObjectHolded.transform.position = transform.position; // We move the object according to the player position
+            if (ObjectHolded.tag == "ShipBody" && GameStateManager.Instance.GetShipBody() == 2)
+            {
+                ObjectHolded.transform.position = GameStateManager.Instance.GetMiddlePoint(gameObject.transform.position);
+            }
+            else if(ObjectHolded.tag != "ShipBody")
+            {
+                ObjectHolded.transform.position = transform.position; // We move the object according to the player position
+            }
+            
         }
     }
 
@@ -36,7 +44,12 @@ public class PlayerCollision : MonoBehaviour
             audioPlayer.Play();
         }
         //L1: SHIP PIECES
-        if (collision.tag == "ShipBody" || collision.tag == "ShipArms" || collision.tag == "ShipMotor" || collision.tag == "ShipEye") // Level1: Cuando player colisiona con piezas del ship
+        if(collision.tag == "ShipBody")
+        {
+            GameStateManager.Instance.HoldingShipBody();
+            ObjectHolded = collision.gameObject;
+        }
+        if (collision.tag == "ShipArms" || collision.tag == "ShipMotor" || collision.tag == "ShipEye") // Level1: Cuando player colisiona con piezas del ship
         {
             Debug.Log(collision.tag);
             ObjectHolded = collision.gameObject;
@@ -102,7 +115,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if(collision.tag == "ShipBody") //Quitamos efecto de "coger objeto"
         {
-
+            GameStateManager.Instance.DropShipBody();
         }
     }
 

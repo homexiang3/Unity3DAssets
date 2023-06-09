@@ -14,8 +14,8 @@ public class GameStateManager : MonoBehaviour
 
     //Level 1
     private int _spaceParts = 0; // Players score of Level1
-    //private int _shipBody = 0; //level 1
-
+    private int _shipBody = 0; //level 1
+    private static List<Vector3> playersPosition = new List<Vector3>();
     //Level 2 
     private GameObject PlatformLeft = null;
     private GameObject PlatformRight = null;
@@ -96,6 +96,45 @@ public class GameStateManager : MonoBehaviour
         _spaceParts += 1;
         if(_spaceParts== 4)
             SceneManager.LoadScene("Level2");
+    }
+
+    public void HoldingShipBody()
+    {
+      
+        _shipBody += 1;
+        Debug.Log(_shipBody);
+    }
+
+    public void DropShipBody()
+    {
+        _shipBody -= 1;
+        // Avoid having negative score
+        if (_shipBody < 0) _shipBody = 0;
+        playersPosition.Clear();
+        Debug.Log(_shipBody);
+    }
+    public int GetShipBody()
+    {
+        return _shipBody;
+    }
+    public Vector3 GetMiddlePoint(Vector3 player)
+    {
+        playersPosition.Add(player);
+
+        Vector3 sum = new Vector3();
+        //reset old position
+        int count = playersPosition.Count;
+        while (count > 2 ) {
+        playersPosition.RemoveAt(0);
+            count = playersPosition.Count;
+        }
+
+        foreach (Vector3 p in playersPosition)
+        {
+            sum += p;
+        }
+        return sum / 2;
+
     }
 
 
