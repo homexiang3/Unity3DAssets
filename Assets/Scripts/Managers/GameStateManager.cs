@@ -10,8 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
+    // Instance
     private static GameStateManager _instance;
-    //Sound
+
+    // Sound
     public AudioClip forest;
     public AudioClip space;
     public AudioClip addRing;
@@ -19,32 +21,46 @@ public class GameStateManager : MonoBehaviour
     public AudioClip platformSound;
     public AudioClip disco; // Level 2 Music
 
+    // Scene loader
     private bool loadScene1 = false;
     private bool loadScene2 = false;
     private bool loadScene3 = false;
-    //Level 1
+
+    /////////////////// Level 1 \\\\\\\\\\\\\\\\\\\\\
+    
+    // Private attributes
     private int _spaceParts = 0; // Players score of Level1
     private int _shipBody = 0; //level 1
     private static List<Vector3> playersPosition = new List<Vector3>();
-    //Level 2 
+
+    /////////////////// Level 2 \\\\\\\\\\\\\\\\\\\\\
+    
+    // Public attributes
+    public double _platformMatched = 0; // Players score of Level2
+    public float _platformMaxTime = 15f; // Max time of platforms waiting before moving
+    public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
+    public double _platformPenalization = 0.5; // Points penalization in case of no matching
+    public GameObject RingPrefab = null;
+    public int wait;
+
+    // Private attributes
     private GameObject PlatformLeft = null;
     private GameObject PlatformRight = null;
     private GameObject RingParent = null;
     private bool _platformLeft = false; // If left platform has a player
     private bool _platformRight = false; // If right platform has a player
-    public double _platformMatched = 0; // Players score of Level2
-    public float _platformMaxTime = 15f; // Max time of platforms waiting before moving
-    public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
-    public double _platformPenalization = 0.5; // Points penalization in case of no matching
     private float _lastTime = 0f; // How much time has passed since
     private bool _level2Start = false;
-    public GameObject RingPrefab = null;
     private GameObject[] RingList;
-    public int wait;
     private bool waitingOnCoroutine = false;
     private ParticleSystem.MinMaxGradient _originalSplashColor;
 
-    //Level 3
+    /////////////////// Level 2 \\\\\\\\\\\\\\\\\\\\\
+    
+    // Enums
+    
+
+    // Private attributes
     private bool playersNear = false;
     private bool earthPlatform = false; //1
     private bool marsPlatform = false; //2
@@ -52,9 +68,6 @@ public class GameStateManager : MonoBehaviour
     private bool saturnPlatform = false; //4
     private bool moonPlatform = false; //5
    
-
-
-
     // Start is called before the first frame update
     public static GameStateManager Instance
     {
