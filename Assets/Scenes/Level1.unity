@@ -170,9 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8af144a228c0cc409d47d3e6bbb5192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableTracking: 1
+  enableTracking: 0
   numberOfPlayers: 2
-  enableYAxis: 1
+  enableYAxis: 0
   players:
   - {fileID: 838648969}
   - {fileID: 1265520736}
@@ -549,6 +549,7 @@ MonoBehaviour:
   platformSound: {fileID: 8300000, guid: 6b30314e5c8aefa40abae315f9af32fc, type: 3}
   shipRepair: {fileID: 8300000, guid: eb8b248f1ea5c8145a650fd883ee9d91, type: 3}
   regularVictory: {fileID: 8300000, guid: 09fb64012d886f04883ab322e4ad482d, type: 3}
+  planetPlaced: {fileID: 8300000, guid: e546bca9e58f92b4f99f6e8263a708ab, type: 3}
   finalVictory: {fileID: 8300000, guid: 0240643ada333024eb965fbb2a8246d5, type: 3}
   disco: {fileID: 8300000, guid: 947d786e3d7f2d24aa3e57add92c6b8a, type: 3}
   _platformMatched: 0

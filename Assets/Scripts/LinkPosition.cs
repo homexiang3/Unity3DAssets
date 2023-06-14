@@ -7,6 +7,7 @@ public class LinkPosition : MonoBehaviour
     // Public attributes
     public GameObject go1;
     public GameObject go2;
+    public float max_distance;
 
     // Private attributes
     private float distance;
@@ -38,7 +39,7 @@ public class LinkPosition : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(go1.transform.position, go2.transform.position);
-        if(distance < 20.0f)
+        if(distance < max_distance)
         {
             l.startColor = near;
             l.endColor = near;

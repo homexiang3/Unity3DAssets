@@ -4,42 +4,52 @@ using UnityEngine;
 
 public class LinkPlanets : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Public attributes
     public GameObject go1;
     public GameObject go2;
-    LineRenderer l;
-    private Color near = Color.green;
-    private Color far = Color.red;
+    public int planetCode1;
+    public int planetCode2;
+
+    // Private attributes
+    public bool active_link;
+    private Color near;
+    private Color far;
+    private CapsuleCollider c;
 
     // Start is called before the first frame update
     void Start()
     {
-        l = gameObject.AddComponent<LineRenderer>();
-        l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-        CapsuleCollider capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-        capsuleCollider.direction = 2;
-        capsuleCollider.radius = 0.7f;
-        capsuleCollider.center = new Vector3(0, 0, 0);
-        setCollider();
+        // Init private attributes
+        active_link = false;
+        near = Color.green;
+        far = Color.red;
+        c = gameObject.GetComponent<CapsuleCollider>();
+
+
+        // Set collider properties
+        c.direction = 2;
+        c.radius = 0.7f;
+        c.center = new Vector3(0, 0, 0);
+        ColliderCreate();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //line render
-        List<Vector3> pos = new List<Vector3>();
-        pos.Add(go1.transform.position);
-        pos.Add(go2.transform.position);
-        l.startWidth = 0.5f;
-        l.endWidth = 0.5f;
-        l.SetPositions(pos.ToArray());
-        l.useWorldSpace = true;
+        if (GameStateManager.Instance.CheckPlanetLink(planetCode1, planetCode2) == true)
+        {
+            active_link = true;
+            gameObject.SetActive(true);
+
+        }
+
     }
 
-    void setCollider()
+
+    void ColliderCreate()
     {
-        Vector3 startPos = l.GetPosition(0);
-        Vector3 endPos = l.GetPosition(1);
+        Vector3 startPos = go1.transform.position;
+        Vector3 endPos = go2.transform.position;
 
         Vector3 dir = endPos - startPos;  ///---this is vector that points from starting point to finish point
         float height = dir.magnitude;
@@ -48,8 +58,8 @@ public class LinkPlanets : MonoBehaviour
         Vector3 centerCoord = startPos + dir2;
 
         gameObject.transform.position = centerCoord;
-        CapsuleCollider capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-        capsuleCollider.height = height;
+        c.height = height;
         gameObject.transform.LookAt(go2.transform);
     }
 }
+

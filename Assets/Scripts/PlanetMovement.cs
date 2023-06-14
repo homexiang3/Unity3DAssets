@@ -45,12 +45,15 @@ public class PlanetMovement : MonoBehaviour
                     var step = speed * Time.deltaTime;
 
                     // Predict new position
-                    var new_position = collisionNormal * step;
+                    var move_vector = collisionNormal * step;
+                    var new_position = transform.position + move_vector;
 
-                    // TODO: Check here if new position collides with a planet link
-
-                    // Set new position
-                    transform.Translate(new_position, Space.World);
+                    // TODO: Check here if new position collides with a planet link or is out of bounds
+                    if (new_position.x >= 5 && new_position.z >= 5 && new_position.x <= 95 && new_position.z <= 95)//out of bounds
+                    {
+                        // Set new position
+                        transform.Translate(move_vector, Space.World);
+                    }
 
                     // Leave
                     break;
@@ -97,7 +100,7 @@ public class PlanetMovement : MonoBehaviour
             status = planetStatus.placing;
         
         // Check player link collision
-        if (collision.tag == "Player Link" && GameStateManager.Instance.isPlayerNear())
+        if (collision.tag == "Player Link" && GameStateManager.Instance.isPlayerNear() && status == planetStatus.idle)
         {
             status = planetStatus.moving;
             collisionNormal = getCollisionNormal(other);
@@ -106,6 +109,9 @@ public class PlanetMovement : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        status = planetStatus.idle;
+        if (status != planetStatus.placed) //once placed don't move 
+        {
+            status = planetStatus.idle;
+        }
     }
 }

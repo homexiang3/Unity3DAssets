@@ -22,7 +22,9 @@ public class GameStateManager : MonoBehaviour
 
     public AudioClip shipRepair;
     public AudioClip regularVictory;
+    public AudioClip planetPlaced;
     public AudioClip finalVictory;
+
 
     public AudioClip disco; // Level 2 Music
 
@@ -70,8 +72,6 @@ public class GameStateManager : MonoBehaviour
         Jupiter,
         Saturn,
         Moon,
-        Mercury,
-        Neptune
     }
 
     // Private attributes
@@ -448,6 +448,22 @@ public class GameStateManager : MonoBehaviour
         return playersNear;
     }
 
+    public bool CheckPlanetLink (int code1, int code2)
+    {
+        planets planetCode1 = (planets)code1;
+        planets planetCode2 = (planets)code2;
+
+        if((planetSlotStatus[(int)planetCode1] && planetSlotStatus[(int)planetCode1]) == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
     public void placePlatform(int code)
     {
         // Get planet code
@@ -471,19 +487,26 @@ public class GameStateManager : MonoBehaviour
             case planets.Moon:
                 planetSlotStatus[(int)planets.Moon] = true;
                 break;
-            case planets.Mercury:
-                planetSlotStatus[(int)planets.Mercury] = true;
-                break;
-            case planets.Neptune:
-                planetSlotStatus[(int)planets.Neptune] = true;
-                break;
             default:
                 print("Wrong platform code");
                 break;
         }
 
+        SoundManager.Instance.Play(planetPlaced);
         // Check win condition
-        SoundManager.Instance.Play(finalVictory);
+        var win = true;
+        for (int i = 0; i < planetSlotStatus.Length; i++)
+        {
+            if(planetSlotStatus[i] == false)
+            {
+                win = false;
+            }
+        }
+        if(win == true)
+        {
+            SoundManager.Instance.PlayMusic(finalVictory, false);
+        }
+       
     }
 
 
