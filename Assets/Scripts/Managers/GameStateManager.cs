@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     // Instance
-    private static GameStateManager _instance;
+    private static GameStateManager instance;
 
     // Sound
     public AudioClip forest;
@@ -44,11 +44,11 @@ public class GameStateManager : MonoBehaviour
     
     // Public attributes
     public double _platformMatched = 0; // Players score of Level2
-    public float _platformMaxTime = 15f; // Max time of platforms waiting before moving
+    public float _platformMaxTime = 5f; // Max time of platforms waiting before moving
     public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
     public double _platformPenalization = 0.5; // Points penalization in case of no matching
+    public int wait = 1;
     public GameObject RingPrefab = null;
-    public int wait;
 
     // Private attributes
     private GameObject PlatformLeft = null;
@@ -62,7 +62,7 @@ public class GameStateManager : MonoBehaviour
     private bool waitingOnCoroutine = false;
     private ParticleSystem.MinMaxGradient _originalSplashColor;
 
-    /////////////////// Level 2 \\\\\\\\\\\\\\\\\\\\\
+    /////////////////// Level 3 \\\\\\\\\\\\\\\\\\\\\
     
     // Enums
     private enum planets
@@ -77,29 +77,71 @@ public class GameStateManager : MonoBehaviour
     // Private attributes
     private bool playersNear = false;
     private static int numPlanets = Enum.GetNames(typeof(planets)).Length;
+    private static int numLinks = numPlanets - 1;
     private bool[] planetSlotStatus = new bool[numPlanets];
-   
-    // Start is called before the first frame update
+    private GameObject[] planetLinks;
+
+    /////////////////// METHODS \\\\\\\\\\\\\\\\\\\\\
+
+    // Singleton getter
     public static GameStateManager Instance
     {
         get
         {
-            if (_instance is null)
-                Debug.LogError("Game State Manager is NULL");
-            return _instance;
-        }
+            // If instance is null, find or create the GameStateManager in the scene
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameStateManager>();
 
+                // If not found, create a new GameObject in the current scene and attach the GameStateManager to it
+                if (instance == null)
+                {
+                    // Set Game State Manager
+                    GameObject managerObject = new GameObject("GameStateManager");
+                    instance = managerObject.AddComponent<GameStateManager>();
+                }
+            }
+
+            // Return GameStateManager
+            return instance;
+        }
     }
+
+    // Awake is called during the initialization of the script or component
     void Awake()
     {
-        _instance = this;
+        // Load scene
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Level1":
+                loadLevel1();
+                break;
+            case "Level2":
+                loadLevel2();
+                break;
+            case "Level3":
+                loadLevel3();
+                break;
+        }
+
+        // Make sure the GameStateManager persists between scene loads
         DontDestroyOnLoad(this.gameObject);
+
+        // Subscribe a callback to the scene loaded invocation list
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // When manager is destroyed
+    private void OnDestroy()
+    {
+        // Remove callback from the scene loaded invocation list
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //sound of each level
+        // Sound of each level
         if(SceneManager.GetActiveScene().name == "Level1" && loadScene1 == false)
         {
             SoundManager.Instance.PlayMusic(forest, true);
@@ -107,7 +149,7 @@ public class GameStateManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Level2" && loadScene2 == false)
         {
-            //SoundManager.Instance.PlayMusic(forest, true);
+            // SoundManager.Instance.PlayMusic(forest, true);
             loadScene2 = true;
         }
         if (SceneManager.GetActiveScene().name == "Level3" && loadScene3 == false)
@@ -115,7 +157,8 @@ public class GameStateManager : MonoBehaviour
             SoundManager.Instance.PlayMusic(space, true);
             loadScene3 = true;
         }
-        // Debug
+
+        // Debug levels
         if (Input.GetKeyUp(KeyCode.F1))
         {
             SceneManager.LoadScene("Level1");
@@ -130,7 +173,6 @@ public class GameStateManager : MonoBehaviour
             SceneManager.LoadScene("Level3");
         }
 
-
         // Level 2: Update score and move platforms
         // Executed only if there is no Coroutine being performed
         if(_level2Start && waitingOnCoroutine == false && ((Time.time - _lastTime) > _platformMaxTime  ||  _platformLeft && _platformRight)) // If max waiting time has passed or players win
@@ -140,7 +182,13 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    // LEVEL 1 FUNCTIONS
+    // LEVEL 1 METHODS
+
+    private void loadLevel1()
+    {
+        return;
+    }
+
     public void AddSpacePart() // player moves part to ship template
     {
         SoundManager.Instance.Play(shipRepair);
@@ -191,8 +239,13 @@ public class GameStateManager : MonoBehaviour
 
     }
 
+    // LEVEL 2 METHODS
 
-    // LEVEL 2 FUNCTIONS
+    private void loadLevel2()
+    {
+        return;
+    }
+
     public void AlienInShip() // start level 2 when alien is in ship
     {
         _level2Start = true;
@@ -241,6 +294,7 @@ public class GameStateManager : MonoBehaviour
         // Update last time platforms moved
         //_lastTime = Time.time;
     }
+
     public void loadLevel2Vars()
     {
         Debug.Log("Level 2 STARTS: Search for the platforms!!");
@@ -323,13 +377,14 @@ public class GameStateManager : MonoBehaviour
         // Fetch and activate splash animation
         GameObject splash = platformObject.transform.Find("Splash").gameObject;
         splash.SetActive(false);
-
     }
+
     public void MovePlatforms() // move all platforms
     {
         PlatformLeft.GetComponent<PlatformBehavior>().movePosition(); // For Left platform
         PlatformRight.GetComponent<PlatformBehavior>().movePosition(); // For right platform
     }
+
     public void updateLevel2Parameters() //move platforms and update the last time platforms moved
     {
         //Move the platforms into another random location
@@ -338,6 +393,7 @@ public class GameStateManager : MonoBehaviour
         //Update last time platforms moved
         _lastTime = Time.time;
     }
+
     public void AddPlatformScore() // Add points and check if change of scene is needed
     {
         // Set platforms to false (no player above)
@@ -365,6 +421,7 @@ public class GameStateManager : MonoBehaviour
             updateLevel2Parameters();
         }
     }
+
     public void RemovePlatformScore()// Remove points
     {
         //Save previos score
@@ -385,6 +442,7 @@ public class GameStateManager : MonoBehaviour
         //Change the platforms position and update the lastTime parameter
         updateLevel2Parameters();
     }
+
     IEnumerator AddScoreCoroutine()
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
@@ -408,6 +466,7 @@ public class GameStateManager : MonoBehaviour
         // Set the boolean of the Coroutine handler to false
         waitingOnCoroutine = false;
     }
+
     IEnumerator RemoveScoreCoroutine()
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
@@ -419,6 +478,7 @@ public class GameStateManager : MonoBehaviour
         // Set the boolean of the Coroutine handler to false
         waitingOnCoroutine = false;
     }
+
     public void changePlatformsSplashColor() // NOT BEING USED
     {
         //For platform left
@@ -432,7 +492,14 @@ public class GameStateManager : MonoBehaviour
         //SplashTrail.colorOverTrail = color;
     }
 
-    //LEVEL 3 FUNCTIONS
+    // LEVEL 3 METHODS
+
+    public void loadLevel3()
+    {
+        // Fetch all planet links
+        planetLinks = GameObject.FindGameObjectsWithTag("Planet Link");
+    }
+
     public void PlayersAreNear()
     {
         playersNear = true;
@@ -448,12 +515,19 @@ public class GameStateManager : MonoBehaviour
         return playersNear;
     }
 
-    public bool CheckPlanetLink (int code1, int code2)
+    public void checkPlanetLinks()
     {
-        planets planetCode1 = (planets)code1;
-        planets planetCode2 = (planets)code2;
+        foreach( GameObject planetLink in planetLinks )
+        {
+            // Fetch planet link script
+            PlanetLink planetLinkScript = planetLink.GetComponent<PlanetLink>();
 
-        return planetSlotStatus[(int)planetCode1] && planetSlotStatus[(int)planetCode1];
+            // Check if planet link related planets are already placed
+            if (planetSlotStatus[planetLinkScript.originPlanet] && planetSlotStatus[planetLinkScript.finalPlanet])
+            {
+                launchPlanetLinkAnimations(planetLink);
+            }
+        }
     }
 
     public void placePlatform(int code)
@@ -484,21 +558,46 @@ public class GameStateManager : MonoBehaviour
                 break;
         }
 
+        // Planet planet placing sound
         SoundManager.Instance.Play(planetPlaced);
+
+        // Check planet links
+        checkPlanetLinks();
+
         // Check win condition
-        var win = true;
-        for (int i = 0; i < planetSlotStatus.Length; i++)
-        {
-            if(planetSlotStatus[i] == false)
-            {
-                win = false;
-            }
-        }
-        if(win == true)
+        checkWinCondition();
+    }
+
+    private void launchPlanetLinkAnimations(GameObject planetLink)
+    {
+        // Set planet link to active
+        planetLink.SetActive(true);
+    }
+
+    private void checkWinCondition()
+    {
+        if (Array.TrueForAll(planetSlotStatus, planetSlotStatus => planetSlotStatus == true))
         {
             SoundManager.Instance.PlayMusic(finalVictory, false);
         }
-       
+    }
+
+    // Callbacks
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch(scene.name)
+        {
+            case "Level1":
+                loadLevel1();
+                break;
+            case "Level2":
+                loadLevel2();
+                break;
+            case "Level3":
+                loadLevel3();
+                break;
+
+        }
     }
 
 

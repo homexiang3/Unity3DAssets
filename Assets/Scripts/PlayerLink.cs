@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinkPosition : MonoBehaviour
+public class PlayerLink : MonoBehaviour
 {
     // Public attributes
     public GameObject go1;

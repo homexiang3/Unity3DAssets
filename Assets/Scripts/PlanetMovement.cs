@@ -21,12 +21,23 @@ public class PlanetMovement : MonoBehaviour
     // Private attributes
     private planetStatus status;
     private Vector3 collisionNormal;
+    private GameObject planetModel;
+    private GameObject planetCircle;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set planet init status to idle
         status = planetStatus.idle;
-        collisionNormal = new Vector3(0, 0, 0);
+
+        // Initialize collision normal vector
+        collisionNormal = Vector3.zero;
+
+        // Get planet model
+        planetModel = GameObject.FindGameObjectWithTag("Planet Model");
+
+        // Get planet circle
+        planetCircle = GameObject.FindGameObjectWithTag("Planet Circle");
     }
 
     // Update is called once per frame
@@ -76,10 +87,15 @@ public class PlanetMovement : MonoBehaviour
                     // Check placed state
                     if (distance < 0.3f)
                     {
+                        // Set placed status
                         status = planetStatus.placed;
-                        GameStateManager.Instance.placePlatform(planetCode);
-                    }
 
+                        // Let GameStateManager know the platform is placed and perform actions consequently
+                        GameStateManager.Instance.placePlatform(planetCode);
+
+                        // Change planet animations
+                        changePlanetAnimations();
+                    }
                     // Leave
                     break;
                 }
@@ -92,6 +108,36 @@ public class PlanetMovement : MonoBehaviour
         Vector3 collisionPoint = collider.ClosestPoint(transform.position);
         Vector3 normal = Vector3.Scale(new Vector3(1,0,1), (transform.position - collisionPoint));
         return normal;
+    }
+
+    private void changePlanetAnimations()
+    {
+        // Deactivate target slot
+        targetSlot.gameObject.SetActive(false);
+
+        Debug.Log(planetCircle);
+        Debug.Log(planetModel);
+
+        // Get rotate component from planet model
+        rotate rotateComponent = planetModel.GetComponent<rotate>();
+
+        // Reset rotation speed
+        rotateComponent.rotationSpeed = Vector3.zero;        
+
+        // Get particle system from planet circle
+        ParticleSystem circleParticleSystem = planetCircle.GetComponent<ParticleSystem>();
+
+        // Access modules of the particle system
+        var mainModule = circleParticleSystem.main;
+        var trailsModule = circleParticleSystem.trails;
+
+        // Declare white color
+        var white = new ParticleSystem.MinMaxGradient(Color.white);
+
+        // Set circle color to white
+        mainModule.startColor = white;
+        trailsModule.colorOverLifetime = white;
+        trailsModule.colorOverTrail = white;
     }
 
     // Triggers
