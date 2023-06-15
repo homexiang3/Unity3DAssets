@@ -453,15 +453,7 @@ public class GameStateManager : MonoBehaviour
         planets planetCode1 = (planets)code1;
         planets planetCode2 = (planets)code2;
 
-        if((planetSlotStatus[(int)planetCode1] && planetSlotStatus[(int)planetCode1]) == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
+        return planetSlotStatus[(int)planetCode1] && planetSlotStatus[(int)planetCode1];
     }
 
     public void placePlatform(int code)

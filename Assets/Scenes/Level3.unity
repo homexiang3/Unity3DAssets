@@ -1073,9 +1073,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 947843666}
     m_Modifications:
+    - target: {fileID: 3378834050747702328, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378834050747702328, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ef423263b81e9c459f0816ea0a27328, type: 2}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: NoiseModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: ShapeModule.radius.value
@@ -1111,11 +1123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.g
-      value: 0.99215686
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.b
@@ -1123,11 +1135,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.g
-      value: 0.99215686
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.minMaxState
@@ -1760,6 +1772,7 @@ GameObject:
   - component: {fileID: 329096277}
   - component: {fileID: 329096276}
   - component: {fileID: 329096278}
+  - component: {fileID: 329096279}
   m_Layer: 0
   m_Name: Green - Aqua
   m_TagString: Planet Link
@@ -1775,7 +1788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329096274}
   m_LocalRotation: {x: 0, y: 0.76040596, z: 0, w: 0.6494481}
-  m_LocalPosition: {x: 23.9, y: 0, z: 47.6}
+  m_LocalPosition: {x: 22.92, y: 0, z: 48.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 229307775}
@@ -1931,7 +1944,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1984,7 +1997,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9.5
+      scalar: 11.6
       minScalar: 0.48
       maxCurve:
         serializedVersion: 2
@@ -6591,10 +6604,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Height: 63
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 31.5}
+--- !u!114 &329096279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329096274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetCode1: 0
+  planetCode2: 3
+  active_link: 0
 --- !u!1 &332337755
 GameObject:
   m_ObjectHideFlags: 0
@@ -10109,7 +10137,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.4
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10162,7 +10190,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4.8
       minScalar: 0.48
       maxCurve:
         serializedVersion: 2
@@ -14766,13 +14794,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196327056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go1: {fileID: 4510653538304084103}
-  go2: {fileID: 988138979}
   planetCode1: 1
   planetCode2: 4
   active_link: 0
@@ -14786,10 +14812,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Height: 29
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 14.5}
 --- !u!1 &1223171321
 GameObject:
   m_ObjectHideFlags: 0
@@ -14853,7 +14879,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -15649,6 +15675,7 @@ GameObject:
   - component: {fileID: 1400390924}
   - component: {fileID: 1400390923}
   - component: {fileID: 1400390925}
+  - component: {fileID: 1400390926}
   m_Layer: 0
   m_Name: Aqua - Yellow
   m_TagString: Planet Link
@@ -15664,7 +15691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400390921}
   m_LocalRotation: {x: 0, y: -0.7771459, z: 0, w: 0.62932044}
-  m_LocalPosition: {x: 84.6, y: 0, z: 36.3}
+  m_LocalPosition: {x: 84.99, y: 0, z: 36.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 229307775}
@@ -20480,10 +20507,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Height: 38
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 18.8}
+--- !u!114 &1400390926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400390921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetCode1: 3
+  planetCode2: 2
+  active_link: 0
 --- !u!1001 &1425116739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20829,11 +20871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.g
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.b
@@ -20841,11 +20883,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.g
-      value: 0.3254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.minMaxState
@@ -21842,7 +21884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.g
-      value: 0.3254902
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.r
@@ -21854,7 +21896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.g
-      value: 0.3254902
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378834050747702329, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.r
@@ -24254,6 +24296,7 @@ GameObject:
   - component: {fileID: 1875428902}
   - component: {fileID: 1875428901}
   - component: {fileID: 1875428904}
+  - component: {fileID: 1875428905}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -24319,6 +24362,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bec3388b2554d0e44baf61ead0bb8258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1875428905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875428900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1511ccae7919cfc46b603b9b337fdc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1877932338
@@ -25769,6 +25824,7 @@ GameObject:
   - component: {fileID: 2075335893}
   - component: {fileID: 2075335892}
   - component: {fileID: 2075335894}
+  - component: {fileID: 2075335895}
   m_Layer: 0
   m_Name: Pink - Green
   m_TagString: Planet Link
@@ -25784,7 +25840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075335890}
   m_LocalRotation: {x: 0, y: -0.7826082, z: 0, w: 0.62251467}
-  m_LocalPosition: {x: 59.506, y: 0, z: 57.245}
+  m_LocalPosition: {x: 59.87, y: 0, z: 57.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 229307775}
@@ -25940,7 +25996,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.8
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -25993,7 +26049,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 6.5
       minScalar: 0.48
       maxCurve:
         serializedVersion: 2
@@ -30600,10 +30656,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Height: 37.2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 18.8}
+--- !u!114 &2075335895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075335890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetCode1: 4
+  planetCode2: 0
+  active_link: 0
 --- !u!4 &585529172424507334 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3943245417034348352, guid: 16456307c359a5a4889622cfd24af345, type: 3}
@@ -30651,6 +30722,10 @@ PrefabInstance:
     - target: {fileID: 3943245417034348351, guid: 16456307c359a5a4889622cfd24af345, type: 3}
       propertyPath: ShapeModule.arc.mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3943245417034348351, guid: 16456307c359a5a4889622cfd24af345, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3943245417034348351, guid: 16456307c359a5a4889622cfd24af345, type: 3}
       propertyPath: ShapeModule.donutRadius

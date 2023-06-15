@@ -48,8 +48,13 @@ public class PlanetMovement : MonoBehaviour
                     var move_vector = collisionNormal * step;
                     var new_position = transform.position + move_vector;
 
+                    // Declare booleans
+                    // c = gameObject.GetComponent<CapsuleCollider>();
+                    bool planet_link_collision = false;
+                    bool out_of_bounds = new_position.x >= 5 && new_position.z >= 5 && new_position.x <= 95 && new_position.z <= 95;
+
                     // TODO: Check here if new position collides with a planet link or is out of bounds
-                    if (new_position.x >= 5 && new_position.z >= 5 && new_position.x <= 95 && new_position.z <= 95)//out of bounds
+                    if (!planet_link_collision && out_of_bounds)
                     {
                         // Set new position
                         transform.Translate(move_vector, Space.World);
@@ -109,7 +114,8 @@ public class PlanetMovement : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (status != planetStatus.placed) //once placed don't move 
+        // Once placed don't move 
+        if (status != planetStatus.placed) 
         {
             status = planetStatus.idle;
         }
