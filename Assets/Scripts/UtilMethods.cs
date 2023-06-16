@@ -51,4 +51,17 @@ public class UtilMethods : MonoBehaviour
         // Output
         return childrenList.ToArray();
     }
+
+    public static Vector3 rotateVector(Vector3 vector, Vector3 plane, float angle)
+    {
+        // Normalize the vector to rotate and the plane vector
+        vector.Normalize();
+        plane.Normalize();
+
+        // Create a rotation quaternion around the plane normal axis
+        Quaternion rotation = Quaternion.AngleAxis(angle, plane);
+
+        // Rotate the vector using the quaternion
+        return rotation * vector;
+    }
 }

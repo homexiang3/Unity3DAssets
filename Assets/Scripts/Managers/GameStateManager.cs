@@ -525,10 +525,6 @@ public class GameStateManager : MonoBehaviour
             // Fetch planet link script
             PlanetLink planetLinkScript = planetLink.GetComponent<PlanetLink>();
 
-            Debug.Log(planetLinkScript.originPlanet);
-            Debug.Log(planetLinkScript.finalPlanet);
-            Debug.Log(planetSlotStatus[planetLinkScript.originPlanet] && planetSlotStatus[planetLinkScript.finalPlanet]);
-
             // Check if planet link related planets are already placed
             if (planetSlotStatus[planetLinkScript.originPlanet] && planetSlotStatus[planetLinkScript.finalPlanet])
             {
