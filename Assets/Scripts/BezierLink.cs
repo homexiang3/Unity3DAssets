@@ -74,7 +74,6 @@ public class BezierLink : MonoBehaviour
             Vector3 height = player1Position + directorVector * step;
 
             // Calculate wave behaviour
-
             Vector3 waveVector = normalVector * waveHeight * Mathf.Sin(Time.time * waveSpeed + i * Mathf.PI);
 
             // Move control point
