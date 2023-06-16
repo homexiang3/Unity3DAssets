@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 229307775}
   m_Layer: 0
   m_Name: Planet Links
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1759,10 +1759,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329096275}
+  - component: {fileID: 329096279}
   - component: {fileID: 329096277}
   - component: {fileID: 329096276}
   - component: {fileID: 329096278}
-  - component: {fileID: 329096279}
   m_Layer: 0
   m_Name: Green - Aqua
   m_TagString: Planet Link
@@ -6611,7 +6611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originPlanet: 0
-  finalPlanet: 0
+  finalPlanet: 3
 --- !u!1 &332337755
 GameObject:
   m_ObjectHideFlags: 0
@@ -8646,6 +8646,7 @@ MonoBehaviour:
   _platformPenalization: 0.5
   wait: 1
   RingPrefab: {fileID: 3378834050747702334, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
+  planetLinksParent: {fileID: 229307774}
 --- !u!4 &765758470
 Transform:
   m_ObjectHideFlags: 0
@@ -14879,8 +14880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPlanet: 0
-  finalPlanet: 0
+  originPlanet: 1
+  finalPlanet: 4
 --- !u!136 &1196327061
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15737,10 +15738,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400390922}
+  - component: {fileID: 1400390926}
   - component: {fileID: 1400390924}
   - component: {fileID: 1400390923}
   - component: {fileID: 1400390925}
-  - component: {fileID: 1400390926}
   m_Layer: 0
   m_Name: Aqua - Yellow
   m_TagString: Planet Link
@@ -20588,8 +20589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPlanet: 0
-  finalPlanet: 0
+  originPlanet: 3
+  finalPlanet: 2
 --- !u!1001 &1425116739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25897,10 +25898,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075335891}
+  - component: {fileID: 2075335895}
   - component: {fileID: 2075335893}
   - component: {fileID: 2075335892}
   - component: {fileID: 2075335894}
-  - component: {fileID: 2075335895}
   m_Layer: 0
   m_Name: Pink - Green
   m_TagString: Planet Link
@@ -30748,7 +30749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19a084674ab4b84eadb55546a8f2e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPlanet: 0
+  originPlanet: 4
   finalPlanet: 0
 --- !u!4 &585529172424507334 stripped
 Transform:

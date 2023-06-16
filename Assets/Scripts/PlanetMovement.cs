@@ -34,10 +34,10 @@ public class PlanetMovement : MonoBehaviour
         collisionNormal = Vector3.zero;
 
         // Get planet model
-        planetModel = GameObject.FindGameObjectWithTag("Planet Model");
+        planetModel = UtilMethods.FindChildWithTag(transform, "Planet Model");
 
         // Get planet circle
-        planetCircle = GameObject.FindGameObjectWithTag("Planet Circle");
+        planetCircle = UtilMethods.FindChildWithTag(transform, "Planet Circle");
     }
 
     // Update is called once per frame
@@ -115,8 +115,9 @@ public class PlanetMovement : MonoBehaviour
         // Deactivate target slot
         targetSlot.gameObject.SetActive(false);
 
-        Debug.Log(planetCircle);
-        Debug.Log(planetModel);
+        // Check
+        if (!planetModel || !planetCircle)
+            return;
 
         // Get rotate component from planet model
         rotate rotateComponent = planetModel.GetComponent<rotate>();

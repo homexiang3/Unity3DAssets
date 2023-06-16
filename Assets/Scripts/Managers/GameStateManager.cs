@@ -74,6 +74,9 @@ public class GameStateManager : MonoBehaviour
         Moon,
     }
 
+    // Public attributes
+    public GameObject planetLinksParent;
+
     // Private attributes
     private bool playersNear = false;
     private static int numPlanets = Enum.GetNames(typeof(planets)).Length;
@@ -110,6 +113,9 @@ public class GameStateManager : MonoBehaviour
     // Awake is called during the initialization of the script or component
     void Awake()
     {
+        // Make sure the GameStateManager persists between scene loads
+        DontDestroyOnLoad(this.gameObject);
+
         // Load scene
         switch (SceneManager.GetActiveScene().name)
         {
@@ -123,9 +129,6 @@ public class GameStateManager : MonoBehaviour
                 loadLevel3();
                 break;
         }
-
-        // Make sure the GameStateManager persists between scene loads
-        DontDestroyOnLoad(this.gameObject);
 
         // Subscribe a callback to the scene loaded invocation list
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -497,7 +500,7 @@ public class GameStateManager : MonoBehaviour
     public void loadLevel3()
     {
         // Fetch all planet links
-        planetLinks = GameObject.FindGameObjectsWithTag("Planet Link");
+        planetLinks = UtilMethods.FindChildrenWithTag(planetLinksParent.transform, "Planet Link");
     }
 
     public void PlayersAreNear()
@@ -517,10 +520,14 @@ public class GameStateManager : MonoBehaviour
 
     public void checkPlanetLinks()
     {
-        foreach( GameObject planetLink in planetLinks )
+        foreach (GameObject planetLink in planetLinks)
         {
             // Fetch planet link script
             PlanetLink planetLinkScript = planetLink.GetComponent<PlanetLink>();
+
+            Debug.Log(planetLinkScript.originPlanet);
+            Debug.Log(planetLinkScript.finalPlanet);
+            Debug.Log(planetSlotStatus[planetLinkScript.originPlanet] && planetSlotStatus[planetLinkScript.finalPlanet]);
 
             // Check if planet link related planets are already placed
             if (planetSlotStatus[planetLinkScript.originPlanet] && planetSlotStatus[planetLinkScript.finalPlanet])
@@ -554,7 +561,7 @@ public class GameStateManager : MonoBehaviour
                 planetSlotStatus[(int)planets.Moon] = true;
                 break;
             default:
-                print("Wrong platform code");
+                Debug.Log("Wrong platform code");
                 break;
         }
 
