@@ -74,9 +74,6 @@ public class GameStateManager : MonoBehaviour
         Moon,
     }
 
-    // Public attributes
-    public GameObject planetLinksParent;
-
     // Private attributes
     private bool playersNear = false;
     private static int numPlanets = Enum.GetNames(typeof(planets)).Length;
@@ -499,8 +496,10 @@ public class GameStateManager : MonoBehaviour
 
     public void loadLevel3()
     {
-        // Fetch all planet links
-        planetLinks = UtilMethods.FindChildrenWithTag(planetLinksParent.transform, "Planet Link");
+            // Public attributes
+    GameObject planetLinksParent = GameObject.FindWithTag("Tree"); 
+    // Fetch all planet links
+    planetLinks = UtilMethods.FindChildrenWithTag(planetLinksParent.transform, "Planet Link");
     }
 
     public void PlayersAreNear()
