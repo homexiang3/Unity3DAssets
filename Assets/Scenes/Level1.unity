@@ -554,11 +554,10 @@ MonoBehaviour:
   disco: {fileID: 8300000, guid: 947d786e3d7f2d24aa3e57add92c6b8a, type: 3}
   _platformMatched: 0
   _platformMaxTime: 5
-  _platformMinScore: 4
+  _platformMinScore: 5
   _platformPenalization: 0.5
   wait: 1
   RingPrefab: {fileID: 3378834050747702334, guid: 42906da4499e2b6418af56bbe16a6e2a, type: 3}
-  planetLinksParent: {fileID: 0}
 --- !u!1001 &271788888
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class GameStateManager : MonoBehaviour
     // Public attributes
     public double _platformMatched = 0; // Players score of Level2
     public float _platformMaxTime = 5f; // Max time of platforms waiting before moving
-    public double _platformMinScore = 4; // Minimum score to pass to the next level (level3)
+    public double _platformMinScore = 5; // Minimum score to pass to the next level (level3)
     public double _platformPenalization = 0.5; // Points penalization in case of no matching
     public int wait = 1;
     public GameObject RingPrefab = null;
